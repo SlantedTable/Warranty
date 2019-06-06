@@ -1,0 +1,26 @@
+{
+  "name": "notes-app-client",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@hapi/hoek": "^7.1.0",
+    "core-js": "^3.1.3",
+    "hoek": "^6.1.3",
+    "joi": "^14.3.1",
+    "react": "^16.8.3",
+    "react-native": "^0.59.8",
+    "react-native-elements": "^0.18.2",
+    "react-native-vector-icons": "^4.6.0"
+  },
+  "devDependencies": {
+    "jest-expo": "^22.0.1",
+    "react-native-scripts": "1.7.0",
+    "react-test-renderer": "16.1.0"
+  },
+  "scripts": {
+    "start": "react-native-scripts start",
+    "eject": "react-native-scripts eject",
+    "android": "react-native-scripts android",
+    "ios": "react-native-scripts ios"
+  }
+}
