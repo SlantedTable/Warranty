@@ -1,13 +1,23 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
-  );
+import LoginScreen from './src/screens/login/LoginScreen.js'
+
+export default class App extends React.Component {
+  render() {
+    return (
+      <LoginScreen />
+    );
+  }
 }
+
+// export default function App() {
+//   return (
+//     <View style={styles.container}>
+//       <Text>Open up App.js to start working on your app!</Text>
+//     </View>
+//   );
+// }
 
 const styles = StyleSheet.create({
   container: {
