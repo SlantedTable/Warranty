@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-
+import { createStackNavigator, createAppContainer } from 'react-navigation';
 import styles from "./style";
 import {Button, Keyboard, Text, View, TextInput, TouchableWithoutFeedback, Alert, KeyboardAvoidingView} from 'react-native';
 
 
-export default class LoginScreen extends Component {
+export default class FoginScreen extends Component {
 
   render() {
     return (
