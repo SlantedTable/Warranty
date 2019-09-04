@@ -2,11 +2,15 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import LoginScreen from './src/screens/login/LoginScreen.js'
+import Homescreen from './src/screens/home/HomeScreen.js';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 
 export default class App extends React.Component {
   render() {
     return (
-      <LoginScreen />
+      //<LoginScreen />
+      <AppContainer />
     );
   }
 }
@@ -18,6 +22,18 @@ export default class App extends React.Component {
 //     </View>
 //   );
 // }
+
+const AppStackNavigator = createStackNavigator (
+{
+  Login: LoginScreen,
+  Home: Homescreen
+},
+{
+    initialRouteName: Login
+}
+);
+
+const AppContainer = createAppContainer(AppStackNavigator);
 
 const styles = StyleSheet.create({
   container: {
