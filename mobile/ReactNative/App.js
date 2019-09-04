@@ -1,23 +1,50 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import LoginScreen from './src/screens/login/LoginScreen.js'
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 
-export default class App extends React.Component {
+import LoginScreen from './src/screens/login/LoginScreen.js';
+import HomeScreen from './src/screens/home/HomeScreen.js';
+
+class TestScreen extends React.Component {
   render() {
     return (
-      <LoginScreen />
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>Test Screen 2</Text>
+      </View>
     );
   }
 }
 
-// export default function App() {
-//   return (
-//     <View style={styles.container}>
-//       <Text>Open up App.js to start working on your app!</Text>
-//     </View>
-//   );
+const AppNavigator = createStackNavigator(
+  {
+    Test: TestScreen,
+    Login: LoginScreen,
+    Home: HomeScreen,
+  },
+  {
+    initialRouteName: 'Login',
+  }
+);
+
+
+const AppContainer = createAppContainer(AppNavigator);
+
+export default class App extends React.Component {
+  render() {
+    return <AppContainer />;
+  }
+}
+
+// export default class App extends React.Component {
+//   render() {
+//     return (
+//       <LoginScreen />
+//     );
+//   }
 // }
+
 
 const styles = StyleSheet.create({
   container: {

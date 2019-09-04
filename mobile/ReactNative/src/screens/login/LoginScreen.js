@@ -18,7 +18,7 @@ export default class LoginScreen extends Component {
             <TextInput placeholder="Password" placeholderColor="#c4c3cb" style={styles.loginFormTextInput} secureTextEntry={true}/>
             <Button
               buttonStyle={styles.loginButton}
-              onPress={() => this.onLoginPress()}
+              onPress={() => this.props.navigation.navigate('Home')}
               title="Login"
             />
             <Button
