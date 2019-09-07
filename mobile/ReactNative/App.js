@@ -6,6 +6,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 
 import LoginScreen from './src/screens/login/LoginScreen.js';
 import HomeScreen from './src/screens/home/HomeScreen.js';
+import RegisterScreen from './src/screens/register/RegisterScreen.js';
 
 class TestScreen extends React.Component {
   render() {
@@ -22,6 +23,7 @@ const AppNavigator = createStackNavigator(
     Test: TestScreen,
     Login: LoginScreen,
     Home: HomeScreen,
+    Register: RegisterScreen,
   },
   {
     initialRouteName: 'Login',

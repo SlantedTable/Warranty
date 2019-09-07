@@ -23,7 +23,7 @@ export default class LoginScreen extends Component {
             />
             <Button
               buttonStyle={styles.registerButton}
-              onPress={() => this.onRegisterPress()}
+              onPress={() => this.props.navigation.navigate('Register')}
               title="Register"
             />
           </View>
