@@ -5,7 +5,6 @@ import {Button, Keyboard, Text, View, TextInput, TouchableWithoutFeedback, Alert
 
 
 export default class LoginScreen extends Component {
-
   render() {
     return (
       <KeyboardAvoidingView style={styles.containerView} behavior="padding">
