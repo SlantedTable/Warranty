@@ -21,6 +21,7 @@ export async function main(event, context) {
     // Return the matching list of items in response body
     return success(result.Items)
   } catch (e) {
+    return failure({ e })
     return failure({ status: false })
   }
 }

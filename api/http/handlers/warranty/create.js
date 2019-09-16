@@ -3,16 +3,24 @@ import uuid from 'uuid'
 import * as dynamoDbLib from '../../../libs/dynamodb-lib'
 import { success, failure } from '../../../libs/response-lib'
 
+import { validate } from '../../validators/warranty'
+
 export async function main(event, context) {
   const data = JSON.parse(event.body || '{}')
+
+  if (!validate('create', data)) {
+    return failure({
+      message: 'Invalid parameters',
+    })
+  }
 
   const params = {
     TableName: 'warranty',
     Item: {
       userId: event.requestContext.identity.cognitoIdentityId,
       warrantyId: uuid.v1(),
-      content: data.content,
       createdAt: Date.now(),
+      ...data,
     },
   }
 
