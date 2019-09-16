@@ -115,24 +115,69 @@ export default class RegisterScreen extends Component {
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View style={styles.registerScreenContainer}>
                         <View style={styles.registerFormView}>
-                            <Text style={styles.logoText}>Warranty</Text>
-                            <TextInput placeholder="First name" placeholderColor="#c4c3cb" style={styles.registerFormTextInput} />
-                            <TextInput placeholder="Last name" placeholderColor="#c4c3cb" style={styles.registerFormTextInput} />
-                            <TextInput placeholder="Email address" placeholderColor="#c4c3cb" style={styles.registerFormTextInput} />
-                            <TextInput placeholder="Phone number" placeholderColor="#c4c3cb" style={styles.registerFormTextInput} />
-                            <TextInput placeholder="Username" placeholderColor="#c4c3cb" style={styles.registerFormTextInput} />
-                            <TextInput placeholder="Password" placeholderColor="#c4c3cb" style={styles.registerFormTextInput} secureTextEntry={true} />
-                            <TextInput placeholder="Reenter password" placeholderColor="#c4c3cb" style={styles.registerFormTextInput} secureTextEntry={true} />
-                            <Button
-                                buttonStyle={styles.registerButton}
-                                onPress={this.handleSubmit}
-                                title="Register"
-                            />
-                            <Button
-                                buttonStyle={styles.loginButton}
-                                onPress={() => this.props.navigation.navigate('Login')}
-                                title="Go Back"
-                            />
+                        <form onSubmit={this.handleSubmit}>
+                            <FormGroup controlId="given_name" bsSize="large">
+                                <ControlLabel>First Name</ControlLabel>
+                                <FormControl
+                                    type="given_name"
+                                    value={this.state.given_name}
+                                    onChange={this.handleChange}
+                                />
+                                </FormGroup>
+                                <FormGroup controlId="family_name" bsSize="large">
+                                <ControlLabel>Last Name</ControlLabel>
+                                <FormControl
+                                    type="family_name"
+                                    value={this.state.family_name}
+                                    onChange={this.handleChange}
+                                />
+                                </FormGroup>
+                                <FormGroup controlId="email" bsSize="large">
+                                <ControlLabel>Email</ControlLabel>
+                                <FormControl
+                                    autoFocus
+                                    type="email"
+                                    value={this.state.email}
+                                    onChange={this.handleChange}
+                                />
+                                </FormGroup>
+                                <FormGroup controlId="phone" bsSize="large">
+                                <ControlLabel>Phone Number</ControlLabel>
+                                <FormControl
+                                    type="phone"
+                                    value={this.state.phone}
+                                    onChange={this.handleChange}
+                                />
+                                </FormGroup>
+                                <FormGroup controlId="password" bsSize="large">
+                                <ControlLabel>Password</ControlLabel>
+                                <li><small>At least 6 characters</small></li>
+                                <li><small>Include a number & special character</small></li>
+                                <li><small>Include upper and lowercase letters</small></li>
+                                <FormControl
+                                    value={this.state.password}
+                                    onChange={this.handleChange}
+                                    type="password"
+                                />
+                                </FormGroup>
+                                <FormGroup controlId="confirmPassword" bsSize="large">
+                                <ControlLabel>Confirm Password</ControlLabel>
+                                <FormControl
+                                    value={this.state.confirmPassword}
+                                    onChange={this.handleChange}
+                                    type="password"
+                                />
+                                </FormGroup>
+                                <LoaderButton
+                                block
+                                bsSize="large"
+                                disabled={!this.validateForm()}
+                                type="submit"
+                                isLoading={this.state.isLoading}
+                                text="Signup"
+                                loadingText="Signing up…"
+                                />
+                            </form>
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
