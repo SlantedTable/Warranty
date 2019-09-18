@@ -14,13 +14,16 @@ export async function main(event, context) {
     })
   }
 
+  const { name, expiresAt } = data
+
   const params = {
     TableName: 'warranty',
     Item: {
       userId: event.requestContext.identity.cognitoIdentityId,
       warrantyId: uuid.v1(),
       createdAt: Date.now(),
-      ...data,
+      name,
+      expiresAt,
     },
   }
 

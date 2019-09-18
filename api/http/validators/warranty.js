@@ -10,7 +10,7 @@ const requirementsCurry = (data) => (method) => {
 
   switch (method) {
     case 'create': {
-      return [existsInData('name')]
+      return [existsInData('name'), existsInData('expiresAt')]
     }
     default: {
       return []
@@ -21,3 +21,5 @@ const requirementsCurry = (data) => (method) => {
 const existsIn = (data) => (key) => {
   return key in data
 }
+
+const isDate = (string) => {}
