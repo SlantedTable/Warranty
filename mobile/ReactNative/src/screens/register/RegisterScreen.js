@@ -39,11 +39,16 @@ export default class RegisterScreen extends Component {
     //     return this.state.confirmationCode.length > 0;
     //   }
     
-      handleChange = event => {
-        this.setState({
-          [event.target.id]: event.target.value
-        });
+      // handleChange = event => {
+      //   this.setState({
+      //     [event.nativeElement.id]: event.nativeElement.value
+      //   });
+      // }
+
+      handleChange = (text, data) => {
+        this.setState({[text]: data});
       }
+
 
       formatPhoneNumber(phoneNumberString) {
         var x = phoneNumberString;
@@ -116,12 +121,12 @@ export default class RegisterScreen extends Component {
                   <View style={styles.registerScreenContainer}>
                       <View style={styles.registerFormView}>
                           <Text style={styles.logoText}>Warranty</Text>
-                          <TextInput placeholder="First name" placeholderColor="#c4c3cb" style={styles.registerFormTextInput} onChangeText={text => this.handleChange(text)} value={this.state.given_name}/>
-                          <TextInput placeholder="Last name" placeholderColor="#c4c3cb" style={styles.registerFormTextInput} onChangeText={text => this.handleChange(text)} value={this.state.family_name}/>
-                          <TextInput placeholder="Email address" placeholderColor="#c4c3cb" style={styles.registerFormTextInput} onChangeText={text => this.handleChange(text)} value={this.state.email} />
-                          <TextInput placeholder="Phone number" placeholderColor="#c4c3cb" style={styles.registerFormTextInput} onChangeText={text => this.handleChange(text)} value={this.state.phone} />
-                          <TextInput placeholder="Password" placeholderColor="#c4c3cb" style={styles.registerFormTextInput} secureTextEntry={true} onChangeText={text => this.handleChange(text)} value={this.state.password} />
-                          <TextInput placeholder="Reenter password" placeholderColor="#c4c3cb" style={styles.registerFormTextInput} secureTextEntry={true} onChangeText={text => this.handleChange(text)} value={this.state.confirmPassword}/>
+                          <TextInput placeholder="First name" placeholderColor="#c4c3cb" style={styles.registerFormTextInput} onChangeText={(text) => this.handleChange("given_name", text)} >{this.state.given_name}</TextInput>
+                          <TextInput placeholder="Last name" placeholderColor="#c4c3cb" style={styles.registerFormTextInput} onChangeText={(text) => this.handleChange("family_name", text)} >{this.state.family_name}</TextInput>
+                          <TextInput placeholder="Email address" placeholderColor="#c4c3cb" style={styles.registerFormTextInput} onChangeText={(text) => this.handleChange("email", text)}>{this.state.email}</TextInput>
+                          <TextInput placeholder="Phone number" placeholderColor="#c4c3cb" style={styles.registerFormTextInput} onChangeText={(text) => this.handleChange("phone", text)} >{this.state.phone}</TextInput>
+                          <TextInput placeholder="Password" placeholderColor="#c4c3cb" style={styles.registerFormTextInput} secureTextEntry={true} onChangeText={(text) => this.handleChange("password", text)} >{this.state.password}</TextInput>
+                          <TextInput placeholder="Reenter password" placeholderColor="#c4c3cb" style={styles.registerFormTextInput} secureTextEntry={true} onChangeText={(text) => this.handleChange("confirmPassword", text)} >{this.state.confirmPassword}</TextInput>
                           <Button
                               buttonStyle={styles.registerButton}
                               onPress={() => this.handleSubmit}
