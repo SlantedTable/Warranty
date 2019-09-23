@@ -129,7 +129,7 @@ export default class RegisterScreen extends Component {
                           <TextInput placeholder="Reenter password" placeholderColor="#c4c3cb" style={styles.registerFormTextInput} secureTextEntry={true} onChangeText={(text) => this.handleChange("confirmPassword", text)} >{this.state.confirmPassword}</TextInput>
                           <Button
                               buttonStyle={styles.registerButton}
-                              onPress={() => this.handleSubmit}
+                              onPress={this.handleSubmit}
                               title="Register"
                           />
                           <Button
