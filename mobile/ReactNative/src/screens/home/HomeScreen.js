@@ -10,7 +10,11 @@ export default class HomeScreen extends React.Component {
           <Button
           title="Logout"
           onPress={() => this.props.navigation.push('Login')}
-        />
+          />
+          <Button
+          title="Add Warranty"
+          onPress={() => this.props.navigation.push('Warranty')}
+          />
         </View>
       );
     }
