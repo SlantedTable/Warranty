@@ -4,6 +4,7 @@ const { StyleSheet } = React;
 
 export default {
 
+
 containerView: {
   alignItems: 'center',
   flex: 1,
@@ -17,6 +18,10 @@ logoText: {
   marginTop: 150,
   marginBottom: 30,
   textAlign: 'center',
+},
+imagePicker: {
+  alignSelf: 'center', 
+  justifyContent:'center',
 },
 warrantyLengthText: {
   fontSize: 20,
@@ -50,6 +55,8 @@ warrantyFormTextInput: {
 },
 calenderButton: {
   width: 200,
+  alignSelf: 'center', 
+  justifyContent:'center',
 },
 registerButton: {
   backgroundColor: '#3897f1',

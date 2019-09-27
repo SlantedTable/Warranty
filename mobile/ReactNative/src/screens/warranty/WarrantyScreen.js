@@ -5,6 +5,7 @@ import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
 import styles from "./style";
+import { ScrollView } from "react-native-gesture-handler";
 
 
 
@@ -34,6 +35,7 @@ export default class WarrantyScreen extends React.Component {
     render() {
         let { image } = this.state;
       return (
+        <ScrollView>
         <View style={styles.loginScreenContainer}>
           <View style={styles.loginFormView}>
           <Text style={styles.logoText}>New Warranty</Text>
@@ -43,8 +45,8 @@ export default class WarrantyScreen extends React.Component {
                 onPress={this._pickImage}
                 />
                 {image &&
-                <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
-
+                <Image source={{ uri: image }} style={ {width: 200, height: 200, alignSelf: 'center', justifyContent:'center'}} />}
+            <Text style={styles.warrantyLengthText}>Purchase Date</Text>
             <DatePicker
             style={styles.calenderButton}
             date={this.state.date}
@@ -105,6 +107,7 @@ export default class WarrantyScreen extends React.Component {
             <TextInput placeholder="Extended Warranty Period" placeholderColor="#c4c3cb"  style={styles.warrantyFormTextInput}/>
         </View>
         </View>
+        </ScrollView>
       );
     }
 
