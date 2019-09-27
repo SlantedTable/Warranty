@@ -18,6 +18,19 @@ logoText: {
   marginBottom: 30,
   textAlign: 'center',
 },
+warrantyLengthText: {
+  fontSize: 20,
+  fontWeight: "200",
+  marginTop: 30,
+  marginBottom: 30,
+  textAlign: 'center',
+},
+warrantyLengthPicker: {
+  height: 43,
+  width: 200,
+  alignSelf: 'center', 
+  justifyContent:'center',
+},
 warrantyFormView: {
   flex: 1
 },

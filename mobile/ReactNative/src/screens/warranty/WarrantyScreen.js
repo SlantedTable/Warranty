@@ -68,9 +68,10 @@ export default class WarrantyScreen extends React.Component {
             }}
             onDateChange={(date) => {this.setState({date: date})}}
             />
+            <Text style={styles.warrantyLengthText}>Warranty Length</Text>
             <Picker
             selectedValue={this.state.language}
-            style={{height: 50, width: 100}}
+            style={styles.warrantyLengthPicker}
             onValueChange={(itemValue, itemIndex) =>
                 this.setState({language: itemValue})
             }>
