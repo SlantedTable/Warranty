@@ -1,7 +1,9 @@
-import AWS from "aws-sdk";
+import AWS from 'aws-sdk'
 
 export function call(action, params) {
-  const dynamoDb = new AWS.DynamoDB.DocumentClient();
+  const config = new AWS.DynamoDB({ region: 'us-east-1' })
 
-  return dynamoDb[action](params).promise();
+  const dynamoDb = new AWS.DynamoDB.DocumentClient({ service: config })
+
+  return dynamoDb[action](params).promise()
 }

@@ -1,4 +1,4 @@
-service: notes-app-api
+service: warranty-countdown-api
 
 # Use the serverless-webpack plugin to transpile ES6
 plugins:
@@ -30,68 +30,68 @@ provider:
         - dynamodb:PutItem
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
-      Resource: "arn:aws:dynamodb:us-east-1:*:*"
+      Resource: 'arn:aws:dynamodb:us-east-1:*:*'
 
 functions:
   # Defines an HTTP API endpoint that calls the main function in create.js
-  # - path: url path is /notes
+  # - path: url path is /warranty
   # - method: POST request
   # - cors: enabled CORS (Cross-Origin Resource Sharing) for browser cross
   #     domain api call
   # - authorizer: authenticate using the AWS IAM role
   create:
-    handler: create.main
+    handler: http/handlers/warranty/create.main
     events:
       - http:
-          path: notes
+          path: warranty
           method: post
           cors: true
           authorizer: aws_iam
 
   get:
-  # Defines an HTTP API endpoint that calls the main function in get.js
-  # - path: url path is /notes/{id}
-  # - method: GET request
-    handler: get.main
+    # Defines an HTTP API endpoint that calls the main function in get.js
+    # - path: url path is /warranty/{id}
+    # - method: GET request
+    handler: http/handlers/warranty/get.main
     events:
       - http:
-          path: notes/{id}
+          path: warranty/{id}
           method: get
           cors: true
           authorizer: aws_iam
 
   list:
     # Defines an HTTP API endpoint that calls the main function in list.js
-    # - path: url path is /notes
+    # - path: url path is /warranty
     # - method: GET request
-    handler: list.main
+    handler: http/handlers/warranty/index.main
     events:
       - http:
-          path: notes
+          path: warranty
           method: get
           cors: true
           authorizer: aws_iam
 
   update:
     # Defines an HTTP API endpoint that calls the main function in update.js
-    # - path: url path is /notes/{id}
+    # - path: url path is /warranty/{id}
     # - method: PUT request
-    handler: update.main
+    handler: http/handlers/warranty/update.main
     events:
       - http:
-          path: notes/{id}
+          path: warranty/{id}
           method: put
           cors: true
           authorizer: aws_iam
 
   delete:
     # Defines an HTTP API endpoint that calls the main function in delete.js
-    # - path: url path is /notes/{id}
+    # - path: url path is /warranty/{id}
     # - method: DELETE request
-    handler: delete.main
+    handler: http/handlers/warranty/delete.main
     events:
       - http:
-          path: notes/{id}
+          path: warranty/{id}
           method: delete
           cors: true
           authorizer: aws_iam
