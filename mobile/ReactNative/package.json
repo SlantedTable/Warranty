@@ -8,6 +8,8 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "aws-amplify": "^1.1.40",
+    "aws-amplify-react-native": "^2.1.19",
     "expo": "^34.0.1",
     "expo-constants": "^7.0.0",
     "expo-image-picker": "^7.0.0",
