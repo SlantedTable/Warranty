@@ -67,9 +67,11 @@ export default class RegisterScreen extends Component {
             username: this.state.email,
             password: this.state.password,
             attributes: {
-              phone_number: this.formatPhoneNumber(this.state.phone),   // optional - E.164 number convention
-              given_name: this.state.given_name,
-              family_name: this.state.family_name,
+              //phone_number: this.formatPhoneNumber(this.state.phone),   // optional - E.164 number convention
+              //given_name: this.state.given_name,
+              //family_name: this.state.family_name,
+              email: this.state.email,
+              name: this.state.family_name,
             }
           });
           this.setState({
