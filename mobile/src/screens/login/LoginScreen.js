@@ -12,6 +12,7 @@ import {
 } from "react-native";
 
 import styles from "./style";
+import { navigateAndReset } from "../../utils/navigateAndReset";
 
 export default class LoginScreen extends Component {
   constructor(props) {
@@ -48,9 +49,11 @@ export default class LoginScreen extends Component {
         user
       });
 
+      this.props.screenProps.userHasAuthenticated(true);
+
       this.props.navigation.navigate("Home");
     } catch (err) {
-      alert(err.message);
+      alert(err);
     }
 
     this.setState({ isLoading: false });

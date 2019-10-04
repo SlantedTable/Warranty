@@ -28,7 +28,7 @@ Amplify.configure({
   API: {
     endpoints: [
       {
-        name: "notes",
+        name: "warranty",
         endpoint: config.apiGateway.URL,
         region: config.apiGateway.REGION
       }
@@ -36,12 +36,12 @@ Amplify.configure({
   }
 });
 
-class TestScreen extends React.Component {
+class SandboxScreen extends React.Component {
   render() {
     Amplify.configure(amplify);
     return (
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <Text>Test Screen 2</Text>
+        <Text>Sandbox</Text>
       </View>
     );
   }
@@ -49,7 +49,7 @@ class TestScreen extends React.Component {
 
 const AppNavigator = createStackNavigator(
   {
-    Test: TestScreen,
+    Test: SandboxScreen,
     Login: LoginScreen,
     Home: HomeScreen,
     Register: RegisterScreen,
@@ -63,8 +63,25 @@ const AppNavigator = createStackNavigator(
 const AppContainer = createAppContainer(AppNavigator);
 
 export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isAuthenticated: false
+    };
+  }
+
+  userHasAuthenticated = authenticated => {
+    this.setState({ isAuthenticated: authenticated });
+  };
+
   render() {
-    return <AppContainer />;
+    const childProps = {
+      isAuthenticated: this.state.isAuthenticated,
+      userHasAuthenticated: this.userHasAuthenticated
+    };
+
+    return <AppContainer screenProps={childProps} />;
   }
 }
 
