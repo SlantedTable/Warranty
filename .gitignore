@@ -2,4 +2,7 @@
 .vs
 .expo
 
+api/node_modules
+mobile/node_modules
+
 
