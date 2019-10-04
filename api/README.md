@@ -1,4 +1,4 @@
-# Serverless Node.js Starter
+# Boostrapped from Serverless Node.js Starter
 
 A Serverless starter that adds ES7 syntax, serverless-offline, environment variables, and unit test support. Part of the [Serverless Stack](http://serverless-stack.com) guide.
 
@@ -19,30 +19,6 @@ A Serverless starter that adds ES7 syntax, serverless-offline, environment varia
 - **Add environment variables for your stages**
 
 ---
-
-### Demo
-
-A demo version of this service is hosted on AWS - [`https://z6pv80ao4l.execute-api.us-east-1.amazonaws.com/dev/hello`](https://z6pv80ao4l.execute-api.us-east-1.amazonaws.com/dev/hello)
-
-And here is the ES7 source behind it
-
-``` javascript
-export const hello = async (event, context) => {
-  return {
-    statusCode: 200,
-    body: JSON.stringify({
-      message: `Go Serverless v1.0! ${(await message({ time: 1, copy: 'Your function executed successfully!'}))}`,
-      input: event,
-    }),
-  };
-};
-
-const message = ({ time, ...rest }) => new Promise((resolve, reject) =>
-  setTimeout(() => {
-    resolve(`${rest.copy} (with a delay)`);
-  }, time * 1000)
-);
-```
 
 ### Requirements
 
@@ -118,12 +94,3 @@ To add environment variables to your project
 3. Uncomment `environment: ${file(env.yml):${self:provider.stage}}` in the `serverless.yml`.
 4. Make sure to not commit your `env.yml`.
 
-### Support
-
-- Send us an [email](mailto:contact@anoma.ly) if you have any questions
-- Open a [new issue](https://github.com/AnomalyInnovations/serverless-nodejs-starter/issues/new) if you've found a bug or have some suggestions.
-- Or submit a pull request!
-
-### Maintainers
-
-Serverless Node.js Starter is maintained by Frank Wang ([@fanjiewang](https://twitter.com/fanjiewang)) & Jay V ([@jayair](https://twitter.com/jayair)). [**Subscribe to our newsletter**](http://eepurl.com/cEaBlf) for updates. Send us an [email](mailto:contact@anoma.ly) if you have any questions.
