@@ -53,7 +53,7 @@ export default class LoginScreen extends Component {
 
       this.props.navigation.navigate('Home')
     } catch (err) {
-      alert(err)
+      alert(err.message)
     }
 
     this.setState({ isLoading: false })

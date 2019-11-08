@@ -49,19 +49,6 @@ class SandboxScreen extends React.Component {
   }
 }
 
-// const AppNavigator = createStackNavigator(
-//   {
-//     Test: SandboxScreen,
-//     Login: LoginScreen,
-//     Home: HomeScreen,
-//     Register: RegisterScreen,
-//     Warranty: WarrantyScreen,
-//   },
-//   {
-//     initialRouteName: 'Login',
-//   },
-// )
-
 const AppContainer = createAppContainer(AppNavigator)
 
 export default class App extends React.Component {

@@ -43,7 +43,6 @@ export default class HomeScreen extends React.Component {
   }
 
   renderRow(warranty) {
-    // return <WarrantyItem warranty={warranty} />
     return <WarrantyItem warranty={warranty}></WarrantyItem>
   }
 
@@ -57,7 +56,8 @@ export default class HomeScreen extends React.Component {
             title="Logout"
             onPress={() => {
               this.props.screenProps.userHasAuthenticated(false)
-              this.props.navigation.push('Login')
+              this.props.navigation.navigate('Login')
+              console.log(this.props.navigation)
             }}
           />
           <Button
