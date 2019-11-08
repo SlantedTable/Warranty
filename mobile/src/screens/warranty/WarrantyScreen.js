@@ -30,7 +30,7 @@ export default class WarrantyScreen extends React.Component {
     };
 
     this.addWarranty = this.addWarranty.bind(this);
-    this.createNote = this.createNote.bind(this);
+    this.createWarranty = this.createWarranty.bind(this);
   }
   state = {
     image: null
