@@ -172,7 +172,7 @@ export default class WarrantyScreen extends React.Component {
           </View>
           <Button
             title="Add Warranty"
-            onPress={() => this.addWarranty(item)}
+            onPress={() => this.addWarranty()}
           />
         </View>
       </ScrollView>
