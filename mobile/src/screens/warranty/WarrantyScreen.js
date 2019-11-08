@@ -30,7 +30,6 @@ export default class WarrantyScreen extends React.Component {
     };
 
     this.addWarranty = this.addWarranty.bind(this);
-    this.createWarranty = this.createWarranty.bind(this);
   }
   state = {
     image: null
@@ -52,23 +51,20 @@ export default class WarrantyScreen extends React.Component {
 
   async addWarranty() {
     try {
-      await this.createWarranty();
+      const msg = await API.post("warranty", "/warranty", {
+        body: {
+          "name": this.state.name,
+          "purchase_date": this.state.purchase_date,
+          "warranty_length": this.state.warranty_length,
+          "product_number": this.state.product_number,
+          "extended_warranty_period": this.state.extended_warranty_period
+        }
+      });
+      alert(msg);
       this.props.navigation.push('Home');
     } catch (e) {
       alert(e.stack);
     }
-  }
-  
-  createWarranty() {
-    return API.post("warranty", "/warranty", {
-      body: {
-        "name": this.state.name,
-        "purchase_date": this.state.purchase_date,
-        "warranty_length": this.state.warranty_length,
-        "product_number": this.state.product_number,
-        "extended_warranty_period": this.state.extended_warranty_period
-      }
-    });
   }
 
   render() {
