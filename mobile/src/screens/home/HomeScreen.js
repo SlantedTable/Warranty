@@ -62,7 +62,7 @@ export default class HomeScreen extends React.Component {
           />
           <Button
             title="Add Warranty"
-            onPress={() => this.props.navigation.push('Warranty')}
+            onPress={() => this.props.navigation.navigate('Warranty')}
           />
           {componentOrNothing(this.state.isLoading, <Text>Loading...</Text>)}
         </View>
