@@ -62,7 +62,6 @@ export default class WarrantyScreen extends React.Component {
   createWarranty() {
     return API.post("warranty", "/warranty", {
       body: {
-        "createdAt": new Date().toDateString(),
         "name": this.state.name,
         "purchase_date": this.state.purchase_date,
         "warranty_length": this.state.warranty_length,
