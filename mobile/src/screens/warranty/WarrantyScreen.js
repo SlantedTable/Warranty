@@ -50,7 +50,7 @@ export default class WarrantyScreen extends React.Component {
     }
   };
 
-  addWarranty() {
+  async addWarranty() {
     try {
       await this.createWarranty();
       this.props.navigation.push('Home');
