@@ -10,21 +10,15 @@ export default {
     textAlign: 'center',
   },
   headerContainer: {
-    flex: 1,
+    height: 50,
     alignItems: 'stretch',
+  },
+  bodyContainer: {
+    flex: 1,
   },
   warrantyTable: {
     flex: 1,
     alignItems: 'flex-start',
-    justifyContent: 'center',
-  },
-  warrantyRow: {
-    flexDirection: 'row',
-  },
-  warrantyCell: {
-    flex: 1,
-    alignSelf: 'stretch',
-    borderWidth: 0.5,
-    borderColor: 'black',
+    flexDirection: 'column',
   },
 }

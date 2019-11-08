@@ -32,3 +32,7 @@ export default class HelpScreen extends React.Component {
     )
   }
 }
+
+HelpScreen.navigationOptions = {
+  title: 'Help',
+}

@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Auth } from "aws-amplify";
+import React, { Component } from 'react'
+import { Auth } from 'aws-amplify'
 import {
   Button,
   Image,
@@ -9,40 +9,40 @@ import {
   TextInput,
   TouchableWithoutFeedback,
   Alert,
-  KeyboardAvoidingView
-} from "react-native";
-import DatePicker from "react-native-datepicker";
-import * as ImagePicker from "expo-image-picker";
-import Constants from "expo-constants";
-import * as Permissions from "expo-permissions";
-import styles from "./style";
-import { ScrollView } from "react-native-gesture-handler";
+  KeyboardAvoidingView,
+} from 'react-native'
+import DatePicker from 'react-native-datepicker'
+import * as ImagePicker from 'expo-image-picker'
+import Constants from 'expo-constants'
+import * as Permissions from 'expo-permissions'
+import styles from './style'
+import { ScrollView } from 'react-native-gesture-handler'
 
 export default class WarrantyScreen extends React.Component {
   constructor(props) {
-    super(props);
-    this.state = { date: "2019-09-25" };
+    super(props)
+    this.state = { date: '2019-09-25' }
   }
   state = {
-    image: null
-  };
+    image: null,
+  }
 
   _pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
-      aspect: [4, 3]
-    });
+      aspect: [4, 3],
+    })
 
-    console.log(result);
+    console.log(result)
 
     if (!result.cancelled) {
-      this.setState({ image: result.uri });
+      this.setState({ image: result.uri })
     }
-  };
+  }
 
   render() {
-    let { image } = this.state;
+    let { image } = this.state
     return (
       <ScrollView>
         <View style={styles.loginScreenContainer}>
@@ -63,8 +63,8 @@ export default class WarrantyScreen extends React.Component {
                 style={{
                   width: 200,
                   height: 200,
-                  alignSelf: "center",
-                  justifyContent: "center"
+                  alignSelf: 'center',
+                  justifyContent: 'center',
                 }}
               />
             )}
@@ -81,17 +81,17 @@ export default class WarrantyScreen extends React.Component {
               cancelBtnText="Cancel"
               customStyles={{
                 dateIcon: {
-                  position: "absolute",
+                  position: 'absolute',
                   left: 0,
                   top: 4,
-                  marginLeft: 0
+                  marginLeft: 0,
                 },
                 dateInput: {
-                  marginLeft: 36
-                }
+                  marginLeft: 36,
+                },
               }}
-              onDateChange={date => {
-                this.setState({ date: date });
+              onDateChange={(date) => {
+                this.setState({ date: date })
               }}
             />
             <Text style={styles.warrantyLengthText}>Warranty Length</Text>
@@ -141,19 +141,30 @@ export default class WarrantyScreen extends React.Component {
           </View>
         </View>
       </ScrollView>
-    );
+    )
   }
 
   componentDidMount() {
-    this.getPermissionAsync();
+    this.getPermissionAsync()
   }
 
   getPermissionAsync = async () => {
     if (Constants.platform.ios) {
-      const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-      if (status !== "granted") {
-        alert("Sorry, we need camera roll permissions to make this work!");
+      const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL)
+      if (status !== 'granted') {
+        alert('Sorry, we need camera roll permissions to make this work!')
       }
     }
-  };
+  }
 }
+
+WarrantyScreen.navigationOptions = ({ navigation }) => ({
+  title: 'New Warranty',
+  headerRight: (
+    <Button
+      onPress={() => navigation.navigate('Home')}
+      title="Back"
+      color="#000"
+    />
+  ),
+})

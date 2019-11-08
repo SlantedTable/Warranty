@@ -17,6 +17,7 @@
     "react": "16.8.3",
     "react-dom": "^16.8.6",
     "react-native": "https://github.com/expo/react-native/archive/sdk-34.0.0.tar.gz",
+    "react-native-components": "0.0.1",
     "react-native-datepicker": "^1.7.2",
     "react-native-gesture-handler": "^1.3.0",
     "react-native-image-picker": "^1.1.0",
