@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
-import { Text, View, Button } from 'react-native'
+import { Platform, Text, View, Button } from 'react-native'
 import { API } from 'aws-amplify'
+import { ListItem } from 'react-native-elements'
 
-import { componentOrNothing } from '../../../utils/componentOr'
+import { Ionicons } from '@expo/vector-icons'
+
+import Colors from '../../../constants/colors'
 
 import styles from './style'
 
@@ -13,14 +16,25 @@ export default class WarrantyItem extends React.Component {
 
   render() {
     return (
-      <View key={this.props.warranty.warrantyId} style={styles.warrantyRow}>
-        <View style={styles.warrantyCell}>
-          <Text>{this.props.warranty.name}</Text>
-        </View>
-        <View style={styles.warrantyCell}>
-          <Text>{this.props.warranty.expiresAt}</Text>
-        </View>
-      </View>
+      <ListItem
+        containerStyle={styles.warrantyItem}
+        titleStyle={styles.titleStyle}
+        title={this.props.warranty.name}
+        subtitle={this.props.warranty.name}
+        leftAvatar={
+          <Ionicons
+            name={
+              Platform.OS === 'ios'
+                ? `ios-information-circle`
+                : 'md-information-circle'
+            }
+            size={26}
+            color={Colors.tabIconDefault}
+          />
+        }
+        bottomDivider
+        chevron
+      />
     )
   }
 }

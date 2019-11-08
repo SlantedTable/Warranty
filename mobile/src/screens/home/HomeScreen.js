@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { Text, View, Button } from 'react-native'
+import { Text, View, Button, ActivityIndicator } from 'react-native'
 import { API } from 'aws-amplify'
 
 import WarrantyItem from './WarrantyItem'
-import { componentOrNothing } from '../../utils/componentOr'
+import { componentOr } from '../../utils/componentOr'
 
 import styles from './style'
 
@@ -43,42 +43,47 @@ export default class HomeScreen extends React.Component {
   }
 
   renderRow(warranty) {
-    return <WarrantyItem warranty={warranty}></WarrantyItem>
+    return (
+      <WarrantyItem
+        key={warranty.warrantyId}
+        warranty={warranty}
+      ></WarrantyItem>
+    )
   }
+
+  componentOrSpinner = componentOr(
+    <ActivityIndicator size="large" color="#0000ff" />,
+  )
 
   render() {
     return (
       <View style={styles.mainContainer}>
         <View style={styles.headerContainer}>
           <Text>Home Screen</Text>
-
-          <Button
-            title="Logout"
-            onPress={() => {
-              this.props.screenProps.userHasAuthenticated(false)
-              this.props.navigation.navigate('Login')
-              console.log(this.props.navigation)
-            }}
-          />
-          <Button
-            title="Add Warranty"
-            onPress={() => this.props.navigation.navigate('Warranty')}
-          />
-          {componentOrNothing(this.state.isLoading, <Text>Loading...</Text>)}
         </View>
 
-        <View style={styles.warrantyTable}>
-          <View key={'column_names'} style={styles.warrantyRow}>
-            <View style={styles.warrantyCell}>
-              <Text>Title</Text>
-            </View>
-            <View style={styles.warrantyCell}>
-              <Text>Expires At</Text>
-            </View>
-          </View>
-          {this.state.warranties.map((warranty) => this.renderRow(warranty))}
+        <View style={styles.bodyContainer}>
+          {this.componentOrSpinner(
+            !this.state.isLoading,
+            <View style={styles.warrantyTable}>
+              {this.state.warranties.map((warranty) =>
+                this.renderRow(warranty),
+              )}
+            </View>,
+          )}
         </View>
       </View>
     )
   }
 }
+
+HomeScreen.navigationOptions = ({ navigation }) => ({
+  title: 'Warranties',
+  headerRight: (
+    <Button
+      onPress={() => navigation.navigate('Warranty')}
+      title="New"
+      color="#000"
+    />
+  ),
+})

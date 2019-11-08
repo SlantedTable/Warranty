@@ -40,9 +40,22 @@ export default class AccountScreen extends React.Component {
     return (
       <View style={styles.mainContainer}>
         <View style={styles.headerContainer}>
-          <Text>Account Screen</Text>
+          <Text>Home Screen</Text>
+
+          <Button
+            title="Logout"
+            onPress={() => {
+              this.props.screenProps.userHasAuthenticated(false)
+              this.props.navigation.navigate('Login')
+              console.log(this.props.navigation)
+            }}
+          />
         </View>
       </View>
     )
   }
+}
+
+AccountScreen.navigationOptions = {
+  title: 'Account',
 }
