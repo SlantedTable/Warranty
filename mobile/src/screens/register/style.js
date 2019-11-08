@@ -10,8 +10,8 @@ export default {
     flex: 1,
   },
   logoText: {
-    fontSize: 40,
-    fontWeight: '800',
+    fontSize: 35,
+    fontWeight: '50',
     marginTop: 90,
     marginBottom: 30,
     textAlign: 'center',

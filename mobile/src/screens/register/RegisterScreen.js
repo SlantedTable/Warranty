@@ -127,7 +127,7 @@ export default class RegisterScreen extends Component {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.registerScreenContainer}>
             <View style={styles.registerFormView}>
-              <Text style={styles.logoText}>Warranty</Text>
+              <Text style={styles.logoText}>Register a New Account</Text>
               <TextInput
                 placeholder="First name"
                 placeholderColor="#c4c3cb"
