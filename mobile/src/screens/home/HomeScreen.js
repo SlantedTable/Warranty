@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, Button, ActivityIndicator } from 'react-native'
+import { ScrollView, Text, View, Button, ActivityIndicator } from 'react-native'
 import { API } from 'aws-amplify'
 
 import WarrantyItem from './WarrantyItem'
@@ -62,7 +62,7 @@ export default class HomeScreen extends React.Component {
           <Text>Home Screen</Text>
         </View>
 
-        <View style={styles.bodyContainer}>
+        <ScrollView style={styles.bodyContainer}>
           {this.componentOrSpinner(
             !this.state.isLoading,
             <View style={styles.warrantyTable}>
@@ -71,7 +71,7 @@ export default class HomeScreen extends React.Component {
               )}
             </View>,
           )}
-        </View>
+        </ScrollView>
       </View>
     )
   }
