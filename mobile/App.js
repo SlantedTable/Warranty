@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Platform, StatusBar, StyleSheet, Text, View } from 'react-native'
 
 import Amplify from 'aws-amplify'
 import config from './config'
@@ -11,6 +11,8 @@ import LoginScreen from './src/screens/login/LoginScreen.js'
 import HomeScreen from './src/screens/home/HomeScreen.js'
 import RegisterScreen from './src/screens/register/RegisterScreen.js'
 import WarrantyScreen from './src/screens/warranty/WarrantyScreen.js'
+
+import AppNavigator from './src/navigation/AppNavigator'
 
 Amplify.configure({
   Auth: {
@@ -47,18 +49,18 @@ class SandboxScreen extends React.Component {
   }
 }
 
-const AppNavigator = createStackNavigator(
-  {
-    Test: SandboxScreen,
-    Login: LoginScreen,
-    Home: HomeScreen,
-    Register: RegisterScreen,
-    Warranty: WarrantyScreen,
-  },
-  {
-    initialRouteName: 'Login',
-  },
-)
+// const AppNavigator = createStackNavigator(
+//   {
+//     Test: SandboxScreen,
+//     Login: LoginScreen,
+//     Home: HomeScreen,
+//     Register: RegisterScreen,
+//     Warranty: WarrantyScreen,
+//   },
+//   {
+//     initialRouteName: 'Login',
+//   },
+// )
 
 const AppContainer = createAppContainer(AppNavigator)
 
@@ -81,7 +83,12 @@ export default class App extends React.Component {
       userHasAuthenticated: this.userHasAuthenticated,
     }
 
-    return <AppContainer screenProps={childProps} />
+    return (
+      <View style={styles.container}>
+        {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+        <AppContainer screenProps={childProps} />
+      </View>
+    )
   }
 }
 
@@ -89,7 +96,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 })
