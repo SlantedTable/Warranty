@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Auth } from "aws-amplify";
+import { Auth, API } from "aws-amplify";
 import {
   Button,
   Image,
@@ -21,7 +21,16 @@ import { ScrollView } from "react-native-gesture-handler";
 export default class WarrantyScreen extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { date: "2019-09-25" };
+    this.state = {
+      name: "",
+      purchase_date: "",
+      warranty_length: "",
+      product_number: "",
+      extended_warranty_period: ""
+    };
+
+    this.addWarranty = this.addWarranty.bind(this);
+    this.createNote = this.createNote.bind(this);
   }
   state = {
     image: null
@@ -40,6 +49,28 @@ export default class WarrantyScreen extends React.Component {
       this.setState({ image: result.uri });
     }
   };
+
+  addWarranty() {
+    try {
+      await this.createWarranty();
+      this.props.navigation.push('Home');
+    } catch (e) {
+      alert(e);
+    }
+  }
+  
+  createWarranty() {
+    return API.post("warranty", "/warranty", {
+      body: {
+        "createdAt": new Date().toDateString(),
+        "name": this.state.name,
+        "purchase_date": this.state.purchase_date,
+        "warranty_length": this.state.warranty_length,
+        "product_number": this.state.product_number,
+        "extended_warranty_period": this.state.extended_warranty_period
+      }
+    });
+  }
 
   render() {
     let { image } = this.state;
@@ -139,6 +170,10 @@ export default class WarrantyScreen extends React.Component {
               style={styles.warrantyFormTextInput}
             />
           </View>
+          <Button
+            title="Add Warranty"
+            onPress={() => this.addWarranty(item)}
+          />
         </View>
       </ScrollView>
     );
