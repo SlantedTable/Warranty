@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Text, View, Button } from 'react-native'
 import { API } from 'aws-amplify'
 
+import WarrantyItem from './WarrantyItem'
 import { componentOrNothing } from '../../utils/componentOr'
 
 import styles from './style'
@@ -42,16 +43,8 @@ export default class HomeScreen extends React.Component {
   }
 
   renderRow(warranty) {
-    return (
-      <View key={warranty.warrantyId} style={styles.warrantyRow}>
-        <View style={styles.warrantyCell}>
-          <Text>{warranty.name}</Text>
-        </View>
-        <View style={styles.warrantyCell}>
-          <Text>{warranty.expiresAt}</Text>
-        </View>
-      </View>
-    )
+    // return <WarrantyItem warranty={warranty} />
+    return <WarrantyItem warranty={warranty}></WarrantyItem>
   }
 
   render() {
