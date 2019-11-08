@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Auth } from "aws-amplify";
+import React, { Component } from 'react'
+import { Auth } from 'aws-amplify'
 import {
   Button,
   Keyboard,
@@ -8,56 +8,56 @@ import {
   TextInput,
   TouchableWithoutFeedback,
   Alert,
-  KeyboardAvoidingView
-} from "react-native";
+  KeyboardAvoidingView,
+} from 'react-native'
 
-import styles from "./style";
-import { navigateAndReset } from "../../utils/navigateAndReset";
+import styles from './style'
+import { navigateAndReset } from '../../utils/navigateAndReset'
 
 export default class LoginScreen extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       isLoading: false,
-      username: "",
-      password: "",
-      user: null
-    };
+      username: '',
+      password: '',
+      user: null,
+    }
   }
 
   validateForm() {
-    return this.state.username.length > 0 && this.state.password.length > 0;
+    return this.state.username.length > 0 && this.state.password.length > 0
   }
 
   handleChange(text, data) {
-    this.setState({ [text]: data });
+    this.setState({ [text]: data })
   }
 
-  handleSubmit = async event => {
-    event.preventDefault();
+  handleSubmit = async (event) => {
+    event.preventDefault()
 
-    this.setState({ isLoading: true });
+    this.setState({ isLoading: true })
 
     try {
       const user = await Auth.signIn({
         username: this.state.username,
-        password: this.state.password
-      });
+        password: this.state.password,
+      })
 
       this.setState({
-        user
-      });
+        user,
+      })
 
-      this.props.screenProps.userHasAuthenticated(true);
+      this.props.screenProps.userHasAuthenticated(true)
 
-      this.props.navigation.navigate("Home");
+      this.props.navigation.navigate('Home')
     } catch (err) {
-      alert(err);
+      alert(err)
     }
 
-    this.setState({ isLoading: false });
-  };
+    this.setState({ isLoading: false })
+  }
 
   render() {
     return (
@@ -71,7 +71,7 @@ export default class LoginScreen extends Component {
                 placeholder="Username"
                 placeholderColor="#c4c3cb"
                 style={styles.loginFormTextInput}
-                onChangeText={text => this.handleChange("username", text)}
+                onChangeText={(text) => this.handleChange('username', text)}
                 value={this.state.username}
               />
               <TextInput
@@ -80,7 +80,7 @@ export default class LoginScreen extends Component {
                 placeholderColor="#c4c3cb"
                 style={styles.loginFormTextInput}
                 secureTextEntry={true}
-                onChangeText={text => this.handleChange("password", text)}
+                onChangeText={(text) => this.handleChange('password', text)}
                 value={this.state.password}
               />
               <Button
@@ -90,13 +90,13 @@ export default class LoginScreen extends Component {
               />
               <Button
                 buttonStyle={styles.registerButton}
-                onPress={() => this.props.navigation.navigate("Register")}
+                onPress={() => this.props.navigation.navigate('Register')}
                 title="Register"
               />
             </View>
           </View>
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
-    );
+    )
   }
 }

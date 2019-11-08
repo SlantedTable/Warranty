@@ -1,7 +1,7 @@
-import { StackActions, NavigationActions } from "react-navigation";
+import { StackActions, NavigationActions } from 'react-navigation'
 
-export const navigateAndReset = routeName =>
+export const navigateAndReset = (routeName) =>
   StackActions.reset({
     index: 0,
-    actions: [NavigationActions.navigate({ routeName })]
-  });
+    actions: [NavigationActions.navigate({ routeName })],
+  })

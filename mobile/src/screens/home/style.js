@@ -1,30 +1,30 @@
-const React = require("react-native");
+const React = require('react-native')
 
-const { StyleSheet } = React;
+const { StyleSheet } = React
 
 export default {
   mainContainer: {
     flex: 1,
-    alignItems: "stretch",
-    justifyContent: "center",
-    textAlign: "center"
+    alignItems: 'stretch',
+    justifyContent: 'center',
+    textAlign: 'center',
   },
   headerContainer: {
     flex: 1,
-    alignItems: "stretch"
+    alignItems: 'stretch',
   },
   warrantyTable: {
     flex: 1,
-    alignItems: "flex-start",
-    justifyContent: "center"
+    alignItems: 'flex-start',
+    justifyContent: 'center',
   },
   warrantyRow: {
-    flexDirection: "row"
+    flexDirection: 'row',
   },
   warrantyCell: {
     flex: 1,
-    alignSelf: "stretch",
+    alignSelf: 'stretch',
     borderWidth: 0.5,
-    borderColor: "black"
-  }
-};
+    borderColor: 'black',
+  },
+}

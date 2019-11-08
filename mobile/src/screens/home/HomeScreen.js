@@ -1,45 +1,45 @@
-import React, { Component } from "react";
-import { Text, View, Button } from "react-native";
-import { API } from "aws-amplify";
+import React, { Component } from 'react'
+import { Text, View, Button } from 'react-native'
+import { API } from 'aws-amplify'
 
-import { componentOrNothing } from "../../utils/componentOr";
+import { componentOrNothing } from '../../utils/componentOr'
 
-import styles from "./style";
+import styles from './style'
 
 export default class HomeScreen extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       isLoading: false,
-      warranties: []
-    };
+      warranties: [],
+    }
   }
 
   componentDidMount() {
     this.setState({
-      isLoading: true
-    });
-    this.fetchWarranties();
+      isLoading: true,
+    })
+    this.fetchWarranties()
   }
 
   fetchWarranties = async () => {
     try {
       if (this.props.screenProps.isAuthenticated) {
-        const warranties = await API.get("warranty", "/warranty");
+        const warranties = await API.get('warranty', '/warranty')
 
         this.setState({
           isLoading: false,
-          warranties
-        });
+          warranties,
+        })
       } else {
-        this.props.navigation.push("Login");
+        this.props.navigation.push('Login')
       }
     } catch (err) {
-      console.log(err);
-      alert(err);
+      console.log(err)
+      alert(err)
     }
-  };
+  }
 
   renderRow(warranty) {
     return (
@@ -51,7 +51,7 @@ export default class HomeScreen extends React.Component {
           <Text>{warranty.expiresAt}</Text>
         </View>
       </View>
-    );
+    )
   }
 
   render() {
@@ -63,19 +63,19 @@ export default class HomeScreen extends React.Component {
           <Button
             title="Logout"
             onPress={() => {
-              this.props.screenProps.userHasAuthenticated(false);
-              this.props.navigation.push("Login");
+              this.props.screenProps.userHasAuthenticated(false)
+              this.props.navigation.push('Login')
             }}
           />
           <Button
             title="Add Warranty"
-            onPress={() => this.props.navigation.push("Warranty")}
+            onPress={() => this.props.navigation.push('Warranty')}
           />
           {componentOrNothing(this.state.isLoading, <Text>Loading...</Text>)}
         </View>
 
         <View style={styles.warrantyTable}>
-          <View key={"column_names"} style={styles.warrantyRow}>
+          <View key={'column_names'} style={styles.warrantyRow}>
             <View style={styles.warrantyCell}>
               <Text>Title</Text>
             </View>
@@ -83,9 +83,9 @@ export default class HomeScreen extends React.Component {
               <Text>Expires At</Text>
             </View>
           </View>
-          {this.state.warranties.map(warranty => this.renderRow(warranty))}
+          {this.state.warranties.map((warranty) => this.renderRow(warranty))}
         </View>
       </View>
-    );
+    )
   }
 }

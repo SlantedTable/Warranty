@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Auth } from "aws-amplify";
+import React, { Component } from 'react'
+import { Auth } from 'aws-amplify'
 import {
   Button,
   Keyboard,
@@ -7,28 +7,28 @@ import {
   View,
   TextInput,
   TouchableWithoutFeedback,
-  KeyboardAvoidingView
-} from "react-native";
+  KeyboardAvoidingView,
+} from 'react-native'
 
-import styles from "./style";
+import styles from './style'
 
 export default class RegisterScreen extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       isLoading: false,
-      email: "",
-      phone: "",
-      given_name: "",
-      family_name: "",
-      password: "",
-      confirmPassword: "",
+      email: '',
+      phone: '',
+      given_name: '',
+      family_name: '',
+      password: '',
+      confirmPassword: '',
       //   confirmationCode: "",
-      newUser: null
-    };
+      newUser: null,
+    }
 
-    this.formatPhoneNumber = this.formatPhoneNumber.bind(this);
+    this.formatPhoneNumber = this.formatPhoneNumber.bind(this)
   }
 
   validateForm() {
@@ -39,7 +39,7 @@ export default class RegisterScreen extends Component {
       this.state.given_name.length > 0 &&
       this.state.password.length > 0 &&
       this.state.password === this.state.confirmPassword
-    );
+    )
   }
 
   //   validateConfirmationForm() {
@@ -53,19 +53,19 @@ export default class RegisterScreen extends Component {
   // }
 
   handleChange = (text, data) => {
-    this.setState({ [text]: data });
-  };
-
-  formatPhoneNumber(phoneNumberString) {
-    var x = phoneNumberString;
-    x = x.replace(/\D+/g, "").replace(/(\d{3})(\d{3})(\d{4})/, "+01$1$2$3");
-    return x;
+    this.setState({ [text]: data })
   }
 
-  handleSubmit = async event => {
-    event.preventDefault();
+  formatPhoneNumber(phoneNumberString) {
+    var x = phoneNumberString
+    x = x.replace(/\D+/g, '').replace(/(\d{3})(\d{3})(\d{4})/, '+01$1$2$3')
+    return x
+  }
 
-    this.setState({ isLoading: true });
+  handleSubmit = async (event) => {
+    event.preventDefault()
+
+    this.setState({ isLoading: true })
 
     try {
       const newUser = await Auth.signUp({
@@ -76,19 +76,19 @@ export default class RegisterScreen extends Component {
           //given_name: this.state.given_name,
           //family_name: this.state.family_name,
           email: this.state.email,
-          name: this.state.family_name
-        }
-      });
+          name: this.state.family_name,
+        },
+      })
       this.setState({
-        newUser
-      });
-      this.props.navigation.navigate("Home");
+        newUser,
+      })
+      this.props.navigation.navigate('Home')
     } catch (e) {
-      alert(e.message);
+      alert(e.message)
     }
 
-    this.setState({ isLoading: false });
-  };
+    this.setState({ isLoading: false })
+  }
 
   //   handleConfirmationSubmit = async event => {
   //     event.preventDefault();
@@ -132,7 +132,7 @@ export default class RegisterScreen extends Component {
                 placeholder="First name"
                 placeholderColor="#c4c3cb"
                 style={styles.registerFormTextInput}
-                onChangeText={text => this.handleChange("given_name", text)}
+                onChangeText={(text) => this.handleChange('given_name', text)}
               >
                 {this.state.given_name}
               </TextInput>
@@ -140,7 +140,7 @@ export default class RegisterScreen extends Component {
                 placeholder="Last name"
                 placeholderColor="#c4c3cb"
                 style={styles.registerFormTextInput}
-                onChangeText={text => this.handleChange("family_name", text)}
+                onChangeText={(text) => this.handleChange('family_name', text)}
               >
                 {this.state.family_name}
               </TextInput>
@@ -148,7 +148,7 @@ export default class RegisterScreen extends Component {
                 placeholder="Email address"
                 placeholderColor="#c4c3cb"
                 style={styles.registerFormTextInput}
-                onChangeText={text => this.handleChange("email", text)}
+                onChangeText={(text) => this.handleChange('email', text)}
               >
                 {this.state.email}
               </TextInput>
@@ -156,7 +156,7 @@ export default class RegisterScreen extends Component {
                 placeholder="Phone number"
                 placeholderColor="#c4c3cb"
                 style={styles.registerFormTextInput}
-                onChangeText={text => this.handleChange("phone", text)}
+                onChangeText={(text) => this.handleChange('phone', text)}
               >
                 {this.state.phone}
               </TextInput>
@@ -165,7 +165,7 @@ export default class RegisterScreen extends Component {
                 placeholderColor="#c4c3cb"
                 style={styles.registerFormTextInput}
                 secureTextEntry={true}
-                onChangeText={text => this.handleChange("password", text)}
+                onChangeText={(text) => this.handleChange('password', text)}
               >
                 {this.state.password}
               </TextInput>
@@ -174,8 +174,8 @@ export default class RegisterScreen extends Component {
                 placeholderColor="#c4c3cb"
                 style={styles.registerFormTextInput}
                 secureTextEntry={true}
-                onChangeText={text =>
-                  this.handleChange("confirmPassword", text)
+                onChangeText={(text) =>
+                  this.handleChange('confirmPassword', text)
                 }
               >
                 {this.state.confirmPassword}
@@ -189,6 +189,6 @@ export default class RegisterScreen extends Component {
           </View>
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
-    );
+    )
   }
 }
