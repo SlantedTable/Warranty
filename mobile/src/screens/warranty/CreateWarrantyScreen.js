@@ -138,6 +138,14 @@ export default class CreateWarrantyScreen extends React.Component {
               placeholderColor="#c4c3cb"
               style={styles.warrantyFormTextInput}
             />
+            <Button
+            onPress={() => this.props.navigation.navigate('Home')}
+            title="Create Warranty">
+                Create Warranty</Button>
+            <Button
+            onPress={() => this.props.navigation.navigate('Home')}
+            title="Cancel">
+                Cancel</Button>
           </View>
         </View>
       </ScrollView>
