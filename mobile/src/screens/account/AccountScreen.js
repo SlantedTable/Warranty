@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Text, View, Button } from 'react-native'
-import { API } from 'aws-amplify'
+import { API, Auth } from 'aws-amplify'
 
-import { componentOrNothing } from '../../utils/componentOr'
+import { componentOrSpinner } from '../../utils/componentOr'
 
 import styles from './style'
 
@@ -26,7 +26,13 @@ export default class AccountScreen extends React.Component {
   fetchAccount = async () => {
     try {
       if (this.props.screenProps.isAuthenticated) {
-        console.log('Fetch acocunt')
+        let user = await Auth.currentAuthenticatedUser({
+          bypassCache: false, // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data
+        })
+        this.setState({
+          isLoading: false,
+          user: user.attributes,
+        })
       } else {
         this.props.navigation.push('Login')
       }
@@ -37,13 +43,16 @@ export default class AccountScreen extends React.Component {
   }
 
   render() {
-    return (
+    const user = this.state.user || {}
+
+    return componentOrSpinner(
+      !this.state.isLoading,
       <View style={styles.mainContainer}>
         <View style={styles.headerContainer}>
           <View style={styles.userInfo}>
             <Text style={styles.userInfo}>Account Screen</Text>
-            <Text style={styles.userInfo}>Name: FirstName LastName</Text>
-            <Text style={styles.userInfo}>Email: email@domain.com</Text>
+            <Text style={styles.userInfo}>Name: {user.name}</Text>
+            <Text style={styles.userInfo}>Email: {user.email}</Text>
             <Text style={styles.userInfo}>Phone: 123-456-7891</Text>
           </View>
 
@@ -52,11 +61,10 @@ export default class AccountScreen extends React.Component {
             onPress={() => {
               this.props.screenProps.userHasAuthenticated(false)
               this.props.navigation.navigate('Login')
-              console.log(this.props.navigation)
             }}
           />
         </View>
-      </View>
+      </View>,
     )
   }
 }
