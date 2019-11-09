@@ -3,7 +3,7 @@ import { ScrollView, Text, View, Button, ActivityIndicator } from 'react-native'
 import { API } from 'aws-amplify'
 
 import WarrantyItem from './WarrantyItem'
-import EditWarranty from '../EditWarranty/EditWarranty'
+import EditWarranty from '../warranty/EditWarranty'
 import { componentOr } from '../../utils/componentOr'
 
 import styles from './style'
@@ -46,11 +46,11 @@ export default class HomeScreen extends React.Component {
 
   renderRow(warranty) {
     return (
-        <WarrantyItem
-          key={warranty.warrantyId}
-          warranty={warranty}
-          navigation={this.props.navigation}
-        ></WarrantyItem>
+      <WarrantyItem
+        key={warranty.warrantyId}
+        warranty={warranty}
+        navigation={this.props.navigation}
+      ></WarrantyItem>
     )
   }
 
