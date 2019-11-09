@@ -40,7 +40,12 @@ export default class AccountScreen extends React.Component {
     return (
       <View style={styles.mainContainer}>
         <View style={styles.headerContainer}>
-          <Text>Home Screen</Text>
+          <View style={styles.userInfo}>
+            <Text style={styles.userInfo}>Account Screen</Text>
+            <Text style={styles.userInfo}>Name: FirstName LastName</Text>
+            <Text style={styles.userInfo}>Email: email@domain.com</Text>
+            <Text style={styles.userInfo}>Phone: 123-456-7891</Text>
+          </View>
 
           <Button
             title="Logout"

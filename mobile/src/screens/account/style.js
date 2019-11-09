@@ -13,4 +13,9 @@ export default {
     flex: 1,
     alignItems: 'stretch',
   },
+  userInfo: {
+    fontFamily: 'sans-serif', 
+    fontWeight: '400', 
+    fontSize: 20
+  }
 }
