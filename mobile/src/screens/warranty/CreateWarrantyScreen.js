@@ -18,7 +18,7 @@ import * as Permissions from 'expo-permissions'
 import styles from './style'
 import { ScrollView } from 'react-native-gesture-handler'
 
-export default class WarrantyScreen extends React.Component {
+export default class CreateWarrantyScreen extends React.Component {
   constructor(props) {
     super(props)
     this.state = { date: '2019-09-25' }
@@ -158,7 +158,7 @@ export default class WarrantyScreen extends React.Component {
   }
 }
 
-WarrantyScreen.navigationOptions = ({ navigation }) => ({
+CreateWarrantyScreen.navigationOptions = ({ navigation }) => ({
   title: 'New Warranty',
   headerRight: (
     <Button

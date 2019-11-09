@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Auth } from 'aws-amplify'
+import { API, Auth } from 'aws-amplify'
 import {
   Button,
   Image,
@@ -15,16 +15,56 @@ import DatePicker from 'react-native-datepicker'
 import * as ImagePicker from 'expo-image-picker'
 import Constants from 'expo-constants'
 import * as Permissions from 'expo-permissions'
-import styles from './style'
 import { ScrollView } from 'react-native-gesture-handler'
 
-export default class EditWarranty extends React.Component {
+import styles from './style'
+import { componentOrSpinner } from '../../utils/componentOr'
+
+export default class EditWarrantyScreen extends React.Component {
+  state = {
+    isLoading: false,
+    warranty: null,
+  }
+
   constructor(props) {
     super(props)
-    this.state = { date: '2019-09-25' }
+    this.state = { isLoading: false, warranty: null }
   }
-  state = {
-    image: null,
+
+  componentDidMount() {
+    this.setState({
+      isLoading: true,
+    })
+    this.getPermissionAsync()
+    this.fetchWarranty(this.props.navigation.getParam('warrantyId'))
+  }
+
+  getPermissionAsync = async () => {
+    if (Constants.platform.ios) {
+      const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL)
+      if (status !== 'granted') {
+        alert('Sorry, we need camera roll permissions to make this work!')
+      }
+    }
+  }
+
+  fetchWarranty = async (warrantyId) => {
+    try {
+      if (this.props.screenProps.isAuthenticated) {
+        const warranty = await API.get('warranty', `/warranty/${warrantyId}`)
+
+        this.setState({
+          isLoading: false,
+          warranty,
+        })
+        console.log(warranty)
+      } else {
+        this.props.navigation.push('Login')
+      }
+    } catch (err) {
+      console.log(err)
+      alert(err)
+    }
   }
 
   _pickImage = async () => {
@@ -41,9 +81,22 @@ export default class EditWarranty extends React.Component {
     }
   }
 
+  deleteWarranty = async (warrantyId) => {
+    try {
+      let response = await API.del('warranty', `/warranty/${warrantyId}`)
+      console.log({ warrantyId })
+      this.props.navigation.navigate('Home')
+      alert('Warranty deleted')
+    } catch (err) {
+      console.log(err)
+      alert(err)
+    }
+  }
+
   render() {
     let { image } = this.state
-    return (
+    return componentOrSpinner(
+      !this.state.isLoading,
       <ScrollView>
         <View style={styles.loginScreenContainer}>
           <View style={styles.loginFormView}>
@@ -139,34 +192,27 @@ export default class EditWarranty extends React.Component {
               style={styles.warrantyFormTextInput}
             />
             <Button
-            onPress={() => this.props.navigation.navigate('Home')}
-            title="Delete Warranty Item">
-                Delete Warranty Item</Button>
+              onPress={() => {
+                this.deleteWarranty(this.state.warranty.warrantyId)
+              }}
+              title="Delete Warranty Item"
+            >
+              Delete Warranty Item
+            </Button>
             <Button
-            onPress={() => this.props.navigation.navigate('Home')}
-            title="Update Warranty Item">
-                Update Warranty Item</Button>
+              onPress={() => this.props.navigation.navigate('Home')}
+              title="Update Warranty Item"
+            >
+              Update Warranty Item
+            </Button>
           </View>
         </View>
-      </ScrollView>
+      </ScrollView>,
     )
-  }
-
-  componentDidMount() {
-    this.getPermissionAsync()
-  }
-
-  getPermissionAsync = async () => {
-    if (Constants.platform.ios) {
-      const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL)
-      if (status !== 'granted') {
-        alert('Sorry, we need camera roll permissions to make this work!')
-      }
-    }
   }
 }
 
-EditWarranty.navigationOptions = ({ navigation }) => ({
+EditWarrantyScreen.navigationOptions = ({ navigation }) => ({
   title: 'Edit Warranty',
   headerRight: (
     <Button

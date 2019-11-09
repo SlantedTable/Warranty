@@ -10,7 +10,7 @@ import { createStackNavigator } from 'react-navigation-stack'
 import LoginScreen from './src/screens/login/LoginScreen.js'
 import HomeScreen from './src/screens/home/HomeScreen.js'
 import RegisterScreen from './src/screens/register/RegisterScreen.js'
-import WarrantyScreen from './src/screens/warranty/WarrantyScreen.js'
+import CreateWarrantyScreen from './src/screens/warranty/CreateWarrantyScreen.js'
 
 import AppNavigator from './src/navigation/AppNavigator'
 
