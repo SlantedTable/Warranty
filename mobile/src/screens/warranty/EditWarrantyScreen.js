@@ -57,7 +57,6 @@ export default class EditWarrantyScreen extends React.Component {
           isLoading: false,
           warranty,
         })
-        console.log(warranty)
       } else {
         this.props.navigation.push('Login')
       }
@@ -74,8 +73,6 @@ export default class EditWarrantyScreen extends React.Component {
       aspect: [4, 3],
     })
 
-    console.log(result)
-
     if (!result.cancelled) {
       this.setState({ image: result.uri })
     }
@@ -84,7 +81,6 @@ export default class EditWarrantyScreen extends React.Component {
   deleteWarranty = async (warrantyId) => {
     try {
       let response = await API.del('warranty', `/warranty/${warrantyId}`)
-      console.log({ warrantyId })
       this.props.navigation.navigate('Home')
       alert('Warranty deleted')
     } catch (err) {
