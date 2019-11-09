@@ -34,6 +34,7 @@ export default class WarrantyItem extends React.Component {
         }
         bottomDivider
         chevron
+        onPress={() => this.props.navigation.navigate('EditWarranty')}
       />
     )
   }

@@ -3,9 +3,11 @@ import { ScrollView, Text, View, Button, ActivityIndicator } from 'react-native'
 import { API } from 'aws-amplify'
 
 import WarrantyItem from './WarrantyItem'
+import EditWarranty from '../EditWarranty/EditWarranty'
 import { componentOr } from '../../utils/componentOr'
 
 import styles from './style'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
 export default class HomeScreen extends React.Component {
   constructor(props) {
@@ -44,10 +46,11 @@ export default class HomeScreen extends React.Component {
 
   renderRow(warranty) {
     return (
-      <WarrantyItem
-        key={warranty.warrantyId}
-        warranty={warranty}
-      ></WarrantyItem>
+        <WarrantyItem
+          key={warranty.warrantyId}
+          warranty={warranty}
+          navigation={this.props.navigation}
+        ></WarrantyItem>
     )
   }
 
