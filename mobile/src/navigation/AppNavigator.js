@@ -2,19 +2,19 @@ import React from 'react'
 import { createAppContainer, createSwitchNavigator } from 'react-navigation'
 
 import LoginScreen from '../screens/login/LoginScreen'
-import WarrantyScreen from '../screens/warranty/WarrantyScreen'
-import RegisterScreen from  '../screens/register/RegisterScreen'
-import EditWarranty from  '../screens/EditWarranty/EditWarranty'
+import CreateWarrantyScreen from '../screens/warranty/CreateWarrantyScreen'
+import RegisterScreen from '../screens/register/RegisterScreen'
+import EditWarrantyScreen from '../screens/warranty/EditWarrantyScreen'
 
 import MainTabNavigator from './MainTabNavigator'
 
 export default createSwitchNavigator(
   {
-    Warranty: WarrantyScreen,
+    Warranty: CreateWarrantyScreen,
     Login: LoginScreen,
     Main: MainTabNavigator,
     Register: RegisterScreen,
-    EditWarranty: EditWarranty
+    EditWarrantyScreen: EditWarrantyScreen,
   },
   {
     initialRouteName: 'Login',

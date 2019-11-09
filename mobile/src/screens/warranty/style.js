@@ -7,7 +7,7 @@ export default {
     alignItems: "center",
     flex: 1
   },
-  warrantyScreenContainer: {
+  CreateWarrantyScreenContainer: {
     flex: 1
   },
   logoText: {

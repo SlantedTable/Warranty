@@ -15,12 +15,13 @@ export default class WarrantyItem extends React.Component {
   }
 
   render() {
+    const warranty = this.props.warranty
     return (
       <ListItem
         containerStyle={styles.warrantyItem}
         titleStyle={styles.titleStyle}
-        title={this.props.warranty.name}
-        subtitle={this.props.warranty.name}
+        title={warranty.name}
+        subtitle={warranty.name}
         leftAvatar={
           <Ionicons
             name={
@@ -34,7 +35,11 @@ export default class WarrantyItem extends React.Component {
         }
         bottomDivider
         chevron
-        onPress={() => this.props.navigation.navigate('EditWarranty')}
+        onPress={() =>
+          this.props.navigation.navigate('EditWarrantyScreen', {
+            warrantyId: warranty.warrantyId,
+          })
+        }
       />
     )
   }

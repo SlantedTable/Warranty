@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, View, Button, ActivityIndicator } from 'react-native'
+import { ScrollView, Text, View, Button } from 'react-native'
 import { API } from 'aws-amplify'
 
 import WarrantyItem from './WarrantyItem'
-import EditWarranty from '../EditWarranty/EditWarranty'
-import { componentOr } from '../../utils/componentOr'
+import EditWarrantyScreen from '../warranty/EditWarrantyScreen'
+import { componentOrSpinner } from '../../utils/componentOr'
 
 import styles from './style'
 import { TouchableOpacity } from 'react-native-gesture-handler'
@@ -46,17 +46,13 @@ export default class HomeScreen extends React.Component {
 
   renderRow(warranty) {
     return (
-        <WarrantyItem
-          key={warranty.warrantyId}
-          warranty={warranty}
-          navigation={this.props.navigation}
-        ></WarrantyItem>
+      <WarrantyItem
+        key={warranty.warrantyId}
+        warranty={warranty}
+        navigation={this.props.navigation}
+      ></WarrantyItem>
     )
   }
-
-  componentOrSpinner = componentOr(
-    <ActivityIndicator size="large" color="#0000ff" />,
-  )
 
   render() {
     return (
@@ -66,7 +62,7 @@ export default class HomeScreen extends React.Component {
         </View>
 
         <ScrollView style={styles.bodyContainer}>
-          {this.componentOrSpinner(
+          {componentOrSpinner(
             !this.state.isLoading,
             <View style={styles.warrantyTable}>
               {this.state.warranties.map((warranty) =>

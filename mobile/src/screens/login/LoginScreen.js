@@ -45,6 +45,8 @@ export default class LoginScreen extends Component {
         password: this.state.password,
       })
 
+      this.setState({ isLoading: false })
+
       this.setState({
         user,
       })
@@ -55,8 +57,6 @@ export default class LoginScreen extends Component {
     } catch (err) {
       alert(err.message)
     }
-
-    this.setState({ isLoading: false })
   }
 
   render() {

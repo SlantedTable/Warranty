@@ -18,7 +18,7 @@ import * as Permissions from 'expo-permissions'
 import styles from './style'
 import { ScrollView } from 'react-native-gesture-handler'
 
-export default class EditWarranty extends React.Component {
+export default class CreateWarrantyScreen extends React.Component {
   constructor(props) {
     super(props)
     this.state = { date: '2019-09-25' }
@@ -47,7 +47,7 @@ export default class EditWarranty extends React.Component {
       <ScrollView>
         <View style={styles.loginScreenContainer}>
           <View style={styles.loginFormView}>
-            <Text style={styles.logoText}>Edit Warranty</Text>
+            <Text style={styles.logoText}>New Warranty</Text>
             <TextInput
               placeholder="Product Name"
               placeholderColor="#c4c3cb"
@@ -140,12 +140,12 @@ export default class EditWarranty extends React.Component {
             />
             <Button
             onPress={() => this.props.navigation.navigate('Home')}
-            title="Delete Warranty Item">
-                Delete Warranty Item</Button>
+            title="Create Warranty">
+                Create Warranty</Button>
             <Button
             onPress={() => this.props.navigation.navigate('Home')}
-            title="Update Warranty Item">
-                Update Warranty Item</Button>
+            title="Cancel">
+                Cancel</Button>
           </View>
         </View>
       </ScrollView>
@@ -166,8 +166,8 @@ export default class EditWarranty extends React.Component {
   }
 }
 
-EditWarranty.navigationOptions = ({ navigation }) => ({
-  title: 'Edit Warranty',
+CreateWarrantyScreen.navigationOptions = ({ navigation }) => ({
+  title: 'New Warranty',
   headerRight: (
     <Button
       onPress={() => navigation.navigate('Home')}
