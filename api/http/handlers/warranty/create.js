@@ -14,7 +14,14 @@ export async function main(event, context) {
     })
   }
 
-  const { name, expiresAt } = data
+  const {
+    name,
+    purchase_date,
+    warranty_length,
+    product_number,
+    extended_warranty_period,
+    image
+  } = data
 
   const params = {
     TableName: 'warranty',
@@ -23,7 +30,11 @@ export async function main(event, context) {
       warrantyId: uuid.v1(),
       createdAt: Date.now(),
       name,
-      expiresAt,
+      purchase_date,
+      warranty_length,
+      product_number,
+      extended_warranty_period,
+      image
     },
   }
 

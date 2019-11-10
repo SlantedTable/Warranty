@@ -10,7 +10,7 @@ const requirementsCurry = (data) => (method) => {
 
   switch (method) {
     case 'create': {
-      return [existsInData('name'), existsInData('expiresAt')]
+      return [existsInData('name'),existsInData('purchase_date'),existsInData('warranty_length'),existsInData('product_number'),existsInData('extended_warranty_period')]
     }
     default: {
       return []
