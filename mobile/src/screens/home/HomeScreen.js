@@ -80,9 +80,7 @@ HomeScreen.navigationOptions = ({ navigation }) => ({
   title: 'Warranties',
   headerRight: (
     <Button
-      onPress={() => navigation.navigate('Warranty', {
-        itemId: "86"
-      })}
+      onPress={() => navigation.navigate('Warranty')}
       title="New"
       color="#000"
     />
