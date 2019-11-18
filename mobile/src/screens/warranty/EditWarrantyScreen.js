@@ -55,7 +55,10 @@ export default class EditWarrantyScreen extends React.Component {
 
         this.setState({
           isLoading: false,
-          warranty,
+        })
+        this.setState({
+          name: warranty.name,
+          purchase_date: warranty.purchase_date,
         })
       } else {
         this.props.navigation.push('Login')
@@ -63,6 +66,35 @@ export default class EditWarrantyScreen extends React.Component {
     } catch (err) {
       console.log(err)
       alert(err)
+    }
+  }
+
+  handleSubmit = async (event) => {
+    event.preventDefault()
+
+    this.setState({ isLoading: true })
+
+    try {
+      const attachment = this.state.image
+        ? await this.s3Upload(this.state.image)
+        : null
+
+      await API.post('warranty', '/warranty', {
+        body: {
+          name: this.state.name,
+          purchase_date: 'this.state.purchase_date',
+          warranty_length: this.state.warranty_length,
+          product_number: this.state.product_number,
+          extended_warranty_period: this.state.extended_warranty_period,
+          image: this.state.upload_time,
+        },
+      })
+
+      this.setState({ isLoading: false })
+
+      this.props.navigation.navigate('Home')
+    } catch (err) {
+      alert(err.message)
     }
   }
 
@@ -91,24 +123,28 @@ export default class EditWarrantyScreen extends React.Component {
 
   render() {
     let { image } = this.state
+
     return componentOrSpinner(
       !this.state.isLoading,
       <ScrollView>
         <View style={styles.loginScreenContainer}>
           <View style={styles.loginFormView}>
-            <Text style={styles.logoText}>Edit Warranty</Text>
+            <Text style={styles.logoText}>New Warranty</Text>
             <TextInput
+              autoCapitalize="none"
               placeholder="Product Name"
               placeholderColor="#c4c3cb"
               style={styles.warrantyFormTextInput}
+              onChangeText={(text) => this.setState({ name: text })}
+              value={this.state.name}
             />
             <Button
               title="Pick an image from camera roll"
               onPress={this._pickImage}
             />
-            {image && (
+            {this.state.image && (
               <Image
-                source={{ uri: image }}
+                source={{ uri: this.state.image }}
                 style={{
                   width: 200,
                   height: 200,
@@ -117,8 +153,10 @@ export default class EditWarrantyScreen extends React.Component {
                 }}
               />
             )}
-            <Text style={styles.warrantyLengthText}>Purchase Date</Text>
-            <DatePicker
+            <Text style={styles.warrantyLengthText}>
+              Purchase Date (MM/DD/YYYY)
+            </Text>
+            {/* <DatePicker
               style={styles.calenderButton}
               date={this.state.date}
               mode="date"
@@ -140,17 +178,26 @@ export default class EditWarrantyScreen extends React.Component {
                 },
               }}
               onDateChange={(date) => {
-                this.setState({ date: date })
+                this.setState({ purchase_date: date })
               }}
+            /> */}
+            <TextInput
+              autoCapitalize="none"
+              placeholder="Purchase Date"
+              placeholderColor="#c4c3cb"
+              style={styles.warrantyFormTextInput}
+              onChangeText={(text) => this.setState({ purchase_date: text })}
+              value={this.state.purchase_date}
             />
             <Text style={styles.warrantyLengthText}>Warranty Length</Text>
             <Picker
-              selectedValue={this.state.language}
+              selectedValue={this.state.warranty_length}
               style={styles.warrantyLengthPicker}
-              onValueChange={(itemValue, itemIndex) =>
-                this.setState({ language: itemValue })
+              onValueChange={(itemValue) =>
+                this.setState({ warranty_length: itemValue })
               }
             >
+              <Picker.Item label="Swipe Up" value="0" />
               <Picker.Item label="1 Month" value="1" />
               <Picker.Item label="2 Months" value="2" />
               <Picker.Item label="3 Months" value="3" />
@@ -176,17 +223,25 @@ export default class EditWarrantyScreen extends React.Component {
               <Picker.Item label="23 Months" value="23" />
               <Picker.Item label="24 Months" value="24" />
             </Picker>
-
             <TextInput
+              autoCapitalize="none"
               placeholder="Product Number"
               placeholderColor="#c4c3cb"
               style={styles.warrantyFormTextInput}
+              onChangeText={(text) => this.setState({ product_number: text })}
+              value={this.state.product_number}
             />
             <TextInput
+              autoCapitalize="none"
               placeholder="Extended Warranty Period"
               placeholderColor="#c4c3cb"
               style={styles.warrantyFormTextInput}
+              onChangeText={(text) =>
+                this.setState({ extended_warranty_period: text })
+              }
+              value={this.state.extended_warranty_period}
             />
+
             <Button
               onPress={() => {
                 this.deleteWarranty(this.state.warranty.warrantyId)
@@ -196,7 +251,10 @@ export default class EditWarrantyScreen extends React.Component {
               Delete Warranty Item
             </Button>
             <Button
-              onPress={() => this.props.navigation.navigate('Home')}
+              onPress={() => {
+                this.handleSubmit()
+                this.props.navigation.navigate('Home')
+              }}
               title="Update Warranty Item"
             >
               Update Warranty Item
