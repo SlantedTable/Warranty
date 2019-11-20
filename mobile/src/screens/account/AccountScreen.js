@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { Text, View, Button } from 'react-native'
+import { Text, View, Button, Image } from 'react-native'
 import { API, Auth } from 'aws-amplify'
 
 import { componentOrSpinner } from '../../utils/componentOr'
-
+import ProfileImage from './ProfileImage'
 import styles from './style'
 
 export default class AccountScreen extends React.Component {
@@ -49,13 +49,19 @@ export default class AccountScreen extends React.Component {
       !this.state.isLoading,
       <View style={styles.mainContainer}>
         <View style={styles.headerContainer}>
-          <View style={styles.userInfo}>
-            <Text style={styles.userInfo}>Account Screen</Text>
-            <Text style={styles.userInfo}>Name: {user.name}</Text>
-            <Text style={styles.userInfo}>Email: {user.email}</Text>
-            <Text style={styles.userInfo}>Phone: 123-456-7891</Text>
-          </View>
-
+          <Image
+            source={{
+              uri: ProfileImage,
+            }}
+            style={styles.profileImage}
+          />
+        </View>
+        <View style={styles.bodyContainer}>
+          <Text style={styles.bodyContainerText}>Name: {user.name}</Text>
+          <Text style={styles.bodyContainerText}>Email: {user.email}</Text>
+          <Text style={styles.bodyContainerText}>Phone: 123-456-7891</Text>
+        </View>
+        <View style={styles.footerContainer}>
           <Button
             title="Logout"
             onPress={() => {

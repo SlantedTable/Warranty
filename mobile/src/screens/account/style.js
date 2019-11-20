@@ -5,16 +5,26 @@ const { StyleSheet } = React
 export default {
   mainContainer: {
     flex: 1,
-    alignItems: 'stretch',
+    alignItems: 'center',
     justifyContent: 'center',
     textAlign: 'center',
   },
-  headerContainer: {
+  headerContainer: {},
+  bodyContainer: {
     flex: 1,
-    alignItems: 'stretch',
+    paddingTop: 20,
   },
-  userInfo: { 
-    fontWeight: '400', 
-    fontSize: 20
-  }
+  bodyContainerText: {
+    fontSize: 24,
+  },
+  profileImage: {
+    width: 200,
+    height: 200,
+    overflow: 'hidden',
+    borderRadius: 100,
+    marginTop: 20,
+  },
+  footerContainer: {
+    marginBottom: 20,
+  },
 }
