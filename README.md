@@ -5,7 +5,8 @@
 # Warranty Countdown
 
 ## Release Notes
-New software features for this release
+## 0.1.0
+#### New software features for this release
 - Add a warranty
     - Select an image of warranty item
     - Input item’s warranty information into a form
@@ -21,18 +22,18 @@ New software features for this release
 - View profile information
     - Allows a user to view their profile’s information from within the application
 
-### Bug fixes made since the last release 
+#### Bug fixes made since the last release 
 - Fixed Delete warranty
     - Delete warranty would not update in the database
 - Fixed back button
     - The back button would not show up on IOS devices but will show up on Android devices
 
-## Known bugs and defects
+#### Known bugs and defects
 - If two users create a warranty at the exact same time the image in the item’s form will have the same ID
 - As of now, when a warranty is updated the old one is deleted and a new one with 
 
 
-## Installation Instructions
+# Installation Instructions
 
 #### Pre-requisites:
 - Git
@@ -59,7 +60,7 @@ New software features for this release
 - Install Git on your machine from the following link: https://git-scm.com/downloads
 - Install the expo client tool for command line
     - Open your command line and type in the following command: npm install expo-cli --global
-
+    
 2. Clone the project
 - Open your command line
 - type: `cd Desktop`
@@ -72,6 +73,8 @@ New software features for this release
 - Open your command line
 - type: `cd Desktop`
 - type: `cd Warranty`
+- type: `cd mobile`
+- type: `npm install` -> This will install the required dependencies needed in order to run the application.
 - type: `expo start`
 - A new window will have opened. Open the Expo App on your phone and scan the QR code.
 
