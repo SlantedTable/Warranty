@@ -5,8 +5,9 @@
 # Warranty Countdown
 
 ## Installation Instructions
-1. Download NodeJS
-    1. Install NodeJS for on your machine from the following link: https://nodejs.org/en/ 
+1. Download NodeJS and Git
+    1. Install NodeJS for on your machine from the following link: https://nodejs.org/en/
+    2. Install Git on your machine from the following link: https://git-scm.com/downloads
 2. Install the expo client tool for command line
     1. Open your command line and type in the following command: npm install expo-cli --global
 3. Clone the project
