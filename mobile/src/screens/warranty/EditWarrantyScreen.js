@@ -87,9 +87,13 @@ export default class EditWarrantyScreen extends React.Component {
         },
       })
 
+      await API.del('warranty', `/warranty/${this.state.warrantyId}`)
+
       this.setState({ isLoading: false })
 
       this.props.navigation.navigate('Home')
+
+      alert('Warranty updated')
     } catch (err) {
       alert(err.message)
     }
@@ -109,7 +113,8 @@ export default class EditWarrantyScreen extends React.Component {
 
   deleteWarranty = async (warrantyId) => {
     try {
-      let response = await API.del('warranty', `/warranty/${warrantyId}`)
+      await API.del('warranty', `/warranty/${warrantyId}`)
+
       this.props.navigation.navigate('Home')
       alert('Warranty deleted')
     } catch (err) {

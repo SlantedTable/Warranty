@@ -21,4 +21,7 @@ export default {
     alignItems: 'flex-start',
     flexDirection: 'column',
   },
+  newButton: {
+    marginRight: 10,
+  }
 }

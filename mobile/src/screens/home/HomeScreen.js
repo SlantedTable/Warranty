@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, View, Button } from 'react-native'
+import { ScrollView, View, Platform } from 'react-native'
 import { API } from 'aws-amplify'
+import { Ionicons } from '@expo/vector-icons'
 
 import WarrantyItem from './WarrantyItem'
-import EditWarrantyScreen from '../warranty/EditWarrantyScreen'
 import { componentOrSpinner } from '../../utils/componentOr'
 
 import styles from './style'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 
-export default class HomeScreen extends React.Component {
+export default class HomeScreen extends Component {
   constructor(props) {
     super(props)
 
@@ -75,10 +75,14 @@ export default class HomeScreen extends React.Component {
 HomeScreen.navigationOptions = ({ navigation }) => ({
   title: 'Warranties',
   headerRight: (
-    <Button
+    <TouchableOpacity
       onPress={() => navigation.navigate('Warranty')}
-      title="New"
-      color="#000"
-    />
+    >
+      <Ionicons
+        name={Platform.OS === 'ios' ? 'ios-add' : 'md-add'}
+        style={styles.newButton}
+        size={32}
+      />
+    </TouchableOpacity>
   ),
 })
