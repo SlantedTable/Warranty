@@ -2,15 +2,15 @@ const React = require('react-native')
 
 const { StyleSheet } = React
 
-export default {
+export default StyleSheet.create({
   mainContainer: {
     flex: 1,
-    alignItems: 'stretch',
+    alignItems: 'center',
     justifyContent: 'center',
     textAlign: 'center',
   },
-  headerContainer: {
-    flex: 1,
-    alignItems: 'stretch',
+  logoImage: {
+    width: 320,
+    height: 146,
   },
-}
+})

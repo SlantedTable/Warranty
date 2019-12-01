@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
 import { Auth } from 'aws-amplify'
 import {
-  Button,
   Keyboard,
   Text,
   View,
   TextInput,
   TouchableWithoutFeedback,
   KeyboardAvoidingView,
+  TouchableOpacity,
+  Image,
 } from 'react-native'
 
+import LogoImage from '../login/LogoImage'
 import styles from './style'
 
 export default class RegisterScreen extends Component {
@@ -24,7 +26,6 @@ export default class RegisterScreen extends Component {
       family_name: '',
       password: '',
       confirmPassword: '',
-      //   confirmationCode: "",
       newUser: null,
     }
 
@@ -41,16 +42,6 @@ export default class RegisterScreen extends Component {
       this.state.password === this.state.confirmPassword
     )
   }
-
-  //   validateConfirmationForm() {
-  //     return this.state.confirmationCode.length > 0;
-  //   }
-
-  // handleChange = event => {
-  //   this.setState({
-  //     [event.nativeElement.id]: event.nativeElement.value
-  //   });
-  // }
 
   handleChange = (text, data) => {
     this.setState({ [text]: data })
@@ -72,9 +63,6 @@ export default class RegisterScreen extends Component {
         username: this.state.email,
         password: this.state.password,
         attributes: {
-          //phone_number: this.formatPhoneNumber(this.state.phone),   // optional - E.164 number convention
-          //given_name: this.state.given_name,
-          //family_name: this.state.family_name,
           email: this.state.email,
           name: this.state.family_name,
         },
@@ -90,44 +78,19 @@ export default class RegisterScreen extends Component {
     this.setState({ isLoading: false })
   }
 
-  //   handleConfirmationSubmit = async event => {
-  //     event.preventDefault();
-
-  //     this.setState({ isLoading: true });
-
-  //     try {
-  //       await Auth.confirmSignUp(this.state.email, this.state.confirmationCode);
-  //       await Auth.signIn(this.state.email, this.state.password);
-
-  //       this.props.userHasAuthenticated(true);
-  //       this.props.history.push("/");
-  //     } catch (e) {
-  //       alert(e.message);
-  //       this.setState({ isLoading: false });
-  //     }
-  //   }
-
-  // componentDidMount() {
-  // }
-
-  // componentWillUnmount() {
-  // }
-
-  // onLoginPress() {
-
-  // }
-
-  // onRegisterPress() {
-
-  // }
-
   render() {
     return (
       <KeyboardAvoidingView style={styles.containerView} behavior="padding">
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.registerScreenContainer}>
             <View style={styles.registerFormView}>
-              <Text style={styles.logoText}>Register a New Account</Text>
+              <Image
+                source={{
+                  uri: LogoImage,
+                }}
+                style={styles.logoImage}
+              />
+              <Text style={styles.titleText}>Register</Text>
               <TextInput
                 placeholder="First name"
                 placeholderColor="#c4c3cb"
@@ -170,7 +133,7 @@ export default class RegisterScreen extends Component {
                 {this.state.password}
               </TextInput>
               <TextInput
-                placeholder="Reenter password"
+                placeholder="Re-enter password"
                 placeholderColor="#c4c3cb"
                 style={styles.registerFormTextInput}
                 secureTextEntry={true}
@@ -180,11 +143,16 @@ export default class RegisterScreen extends Component {
               >
                 {this.state.confirmPassword}
               </TextInput>
-              <Button
-                buttonStyle={styles.registerButton}
+              <TouchableOpacity
+                onPress={() => this.props.navigation.navigate('Login')}
+              >
+                <Text style={styles.loginButton}>Already have an account?</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
                 onPress={this.handleSubmit}
-                title="Register"
-              />
+              >
+                <Text style={styles.registerButton}>Login</Text>
+              </TouchableOpacity>
             </View>
           </View>
         </TouchableWithoutFeedback>

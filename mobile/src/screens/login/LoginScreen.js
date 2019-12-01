@@ -3,16 +3,17 @@ import { Auth } from 'aws-amplify'
 import {
   Button,
   Keyboard,
-  Text,
   View,
   TextInput,
   TouchableWithoutFeedback,
-  Alert,
   KeyboardAvoidingView,
+  Image,
+  TouchableOpacity,
+  Text,
 } from 'react-native'
+import LogoImage from './LogoImage'
 
 import styles from './style'
-import { navigateAndReset } from '../../utils/navigateAndReset'
 
 export default class LoginScreen extends Component {
   constructor(props) {
@@ -31,13 +32,17 @@ export default class LoginScreen extends Component {
   }
 
   handleChange(text, data) {
-    this.setState({ [text]: data })
+    this.setState({
+      [text]: data,
+    })
   }
 
   handleSubmit = async (event) => {
     event.preventDefault()
 
-    this.setState({ isLoading: true })
+    this.setState({
+      isLoading: true,
+    })
 
     try {
       const user = await Auth.signIn({
@@ -45,7 +50,9 @@ export default class LoginScreen extends Component {
         password: this.state.password,
       })
 
-      this.setState({ isLoading: false })
+      this.setState({
+        isLoading: false,
+      })
 
       this.setState({
         user,
@@ -65,7 +72,12 @@ export default class LoginScreen extends Component {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.loginScreenContainer}>
             <View style={styles.loginFormView}>
-              <Text style={styles.logoText}>Warranty Countdown</Text>
+              <Image
+                source={{
+                  uri: LogoImage,
+                }}
+                style={styles.logoImage}
+              />
               <TextInput
                 autoCapitalize="none"
                 placeholder="Username"
@@ -83,16 +95,18 @@ export default class LoginScreen extends Component {
                 onChangeText={(text) => this.handleChange('password', text)}
                 value={this.state.password}
               />
-              <Button
-                buttonStyle={styles.loginButton}
-                onPress={this.handleSubmit}
-                title="Login"
-              />
-              <Button
-                buttonStyle={styles.registerButton}
+              <TouchableOpacity
+                style={styles.registerButton}
                 onPress={() => this.props.navigation.navigate('Register')}
-                title="Register"
-              />
+              >
+                <Text style={styles.registerButton}>Create an account?</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.loginButton}
+                onPress={this.handleSubmit}
+              >
+                <Text style={styles.loginButton}>Login</Text>
+              </TouchableOpacity>
             </View>
           </View>
         </TouchableWithoutFeedback>

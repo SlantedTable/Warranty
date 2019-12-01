@@ -57,10 +57,6 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.mainContainer}>
-        <View style={styles.headerContainer}>
-          <Text>Home Screen</Text>
-        </View>
-
         <ScrollView style={styles.bodyContainer}>
           {componentOrSpinner(
             !this.state.isLoading,

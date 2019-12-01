@@ -2,22 +2,22 @@ const React = require('react-native')
 
 const { StyleSheet } = React
 
-export default {
+export default StyleSheet.create({
   containerView: {
     flex: 1,
   },
   loginScreenContainer: {
     flex: 1,
-  },
-  logoText: {
-    fontSize: 40,
-    fontWeight: '800',
     marginTop: 100,
-    marginBottom: 30,
-    textAlign: 'center',
+  },
+  logoImage: {
+    width: 320,
+    height: 146,
   },
   loginFormView: {
     flex: 1,
+    alignItems: 'center',
+    textAlign: 'center',
   },
   loginFormTextInput: {
     height: 43,
@@ -31,19 +31,18 @@ export default {
     marginRight: 15,
     marginTop: 5,
     marginBottom: 5,
+    width: 320,
   },
   loginButton: {
-    backgroundColor: '#3897f1',
+    fontSize: 24,
+    color: '#007AFF',
     borderRadius: 5,
-    height: 45,
     marginTop: 10,
-    padding: '10',
   },
   registerButton: {
-    backgroundColor: '#3897f1',
+    fontSize: 12,
+    color: '#007AFF',
     borderRadius: 5,
-    height: 45,
-    marginTop: 10,
-    padding: '10',
+    marginTop: 5,
   },
-}
+})

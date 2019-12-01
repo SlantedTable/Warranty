@@ -1,4 +1,3 @@
-// Create warranty handler
 import uuid from 'uuid'
 import * as dynamoDbLib from '../../../libs/dynamodb-lib'
 import { success, failure } from '../../../libs/response-lib'
@@ -20,7 +19,8 @@ export async function main(event, context) {
     warranty_length,
     product_number,
     extended_warranty_period,
-    image
+    image,
+    expires_at,
   } = data
 
   const params = {
@@ -34,7 +34,8 @@ export async function main(event, context) {
       warranty_length,
       product_number,
       extended_warranty_period,
-      image
+      image,
+      expires_at
     },
   }
 

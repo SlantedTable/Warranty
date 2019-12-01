@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { Text, View, Button, Image } from 'react-native'
-import { API, Auth } from 'aws-amplify'
+import { Auth } from 'aws-amplify'
 
 import { componentOrSpinner } from '../../utils/componentOr'
 import ProfileImage from './ProfileImage'
 import styles from './style'
 
-export default class AccountScreen extends React.Component {
+export default class AccountScreen extends Component {
   constructor(props) {
     super(props)
 
@@ -48,7 +48,7 @@ export default class AccountScreen extends React.Component {
     return componentOrSpinner(
       !this.state.isLoading,
       <View style={styles.mainContainer}>
-        <View style={styles.headerContainer}>
+        <View>
           <Image
             source={{
               uri: ProfileImage,

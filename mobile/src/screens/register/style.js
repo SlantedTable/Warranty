@@ -2,22 +2,26 @@ const React = require('react-native')
 
 const { StyleSheet } = React
 
-export default {
+export default StyleSheet.create({
   containerView: {
     flex: 1,
   },
   registerScreenContainer: {
     flex: 1,
+    marginTop: 100,
   },
-  logoText: {
+  logoImage: {
+    width: 320,
+    height: 146,
+  },
+  titleText: {
     fontSize: 35,
-    fontWeight: '50',
-    marginTop: 90,
-    marginBottom: 30,
     textAlign: 'center',
   },
   registerFormView: {
     flex: 1,
+    alignItems: 'center',
+    textAlign: 'center',
   },
   registerFormTextInput: {
     height: 43,
@@ -31,19 +35,18 @@ export default {
     marginRight: 15,
     marginTop: 5,
     marginBottom: 5,
-  },
-  registerButton: {
-    backgroundColor: '#3897f1',
-    borderRadius: 5,
-    height: 45,
-    marginTop: 10,
-    padding: '10',
+    width: 320,
   },
   loginButton: {
-    backgroundColor: '#3897f1',
+    fontSize: 12,
+    color: '#007AFF',
     borderRadius: 5,
-    height: 45,
-    marginTop: 10,
-    padding: '10',
+    marginTop: 5,
   },
-}
+  registerButton: {
+    fontSize: 24,
+    color: '#007AFF',
+    borderRadius: 5,
+    marginTop: 5,
+  },
+})

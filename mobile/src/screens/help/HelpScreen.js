@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
-import { Text, View, Button } from 'react-native'
+import { Text, View, Image } from 'react-native'
 import { API } from 'aws-amplify'
 
-import { componentOrNothing } from '../../utils/componentOr'
-
 import styles from './style'
+import LogoImage from '../login/LogoImage'
 
-export default class HelpScreen extends React.Component {
+export default class HelpScreen extends Component {
   constructor(props) {
     super(props)
 
@@ -25,8 +24,13 @@ export default class HelpScreen extends React.Component {
   render() {
     return (
       <View style={styles.mainContainer}>
-        <View style={styles.headerContainer}>
-          <Text>Help Screen</Text>
+        <View>
+          <Image
+            source={{
+              uri: LogoImage,
+            }}
+            style={styles.logoImage}
+          />
         </View>
       </View>
     )

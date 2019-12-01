@@ -2,14 +2,13 @@ const React = require('react-native')
 
 const { StyleSheet } = React
 
-export default {
+export default StyleSheet.create({
   mainContainer: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     textAlign: 'center',
   },
-  headerContainer: {},
   bodyContainer: {
     flex: 1,
     paddingTop: 20,
@@ -27,4 +26,4 @@ export default {
   footerContainer: {
     marginBottom: 20,
   },
-}
+})

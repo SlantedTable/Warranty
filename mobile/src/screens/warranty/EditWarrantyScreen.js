@@ -57,8 +57,12 @@ export default class EditWarrantyScreen extends React.Component {
           isLoading: false,
         })
         this.setState({
+          warrantyId: warranty.warrantyId,
           name: warranty.name,
           purchase_date: warranty.purchase_date,
+          warranty_length: warranty.warranty_length,
+          product_number: warranty.product_number,
+          extended_warranty_period: warranty.extended_warranty_period,
         })
       } else {
         this.props.navigation.push('Login')
@@ -244,17 +248,16 @@ export default class EditWarrantyScreen extends React.Component {
 
             <Button
               onPress={() => {
-                this.deleteWarranty(this.state.warranty.warrantyId)
+                this.deleteWarranty(this.state.warrantyId)
               }}
               title="Delete Warranty Item"
             >
               Delete Warranty Item
             </Button>
             <Button
-              onPress={() => {
-                this.handleSubmit()
-                this.props.navigation.navigate('Home')
-              }}
+              onPress={
+                this.handleSubmit
+              }
               title="Update Warranty Item"
             >
               Update Warranty Item

@@ -21,14 +21,14 @@ const HomeStack = createStackNavigator(
 )
 
 HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
+  tabBarLabel: 'Warranties',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
       name={
         Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
+          ? `ios-list`
+          : 'md-list'
       }
     />
   ),
@@ -76,7 +76,6 @@ AccountStack.path = ''
 
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
-  HelpStack,
   AccountStack,
 })
 
