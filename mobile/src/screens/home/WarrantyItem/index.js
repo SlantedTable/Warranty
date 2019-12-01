@@ -45,7 +45,7 @@ export default class WarrantyItem extends React.Component {
   render() {
     const warranty = this.props.warranty
     console.log(warranty)
-    const expireDate = warranty.expires_at * 1000
+    const expireDate = new Date(warranty.expires_at)
     const currDate = Date.now()
 
     console.log({expireDate, currDate, diff: expireDate - currDate})

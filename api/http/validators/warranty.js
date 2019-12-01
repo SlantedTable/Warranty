@@ -13,9 +13,8 @@ const requirementsCurry = (data) => (method) => {
       return [
         existsInData('name'),
         existsInData('purchase_date'),
-        existsInData('warranty_length'),
         existsInData('product_number'),
-        existsInData('extended_warranty_period'),
+        existsInData('expires_at')
       ]
     }
     default: {

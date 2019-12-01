@@ -23,20 +23,23 @@ export async function main(event, context) {
     expires_at,
   } = data
 
+  let item = {
+    userId: event.requestContext.identity.cognitoIdentityId,
+    warrantyId: uuid.v1(),
+    createdAt: Date.now(),
+    name,
+    purchase_date,
+    product_number,
+    expires_at
+  }
+
+  if (image) {
+    item.image = image
+  }
+
   const params = {
     TableName: 'warranty',
-    Item: {
-      userId: event.requestContext.identity.cognitoIdentityId,
-      warrantyId: uuid.v1(),
-      createdAt: Date.now(),
-      name,
-      purchase_date,
-      warranty_length,
-      product_number,
-      extended_warranty_period,
-      image,
-      expires_at
-    },
+    Item: item,
   }
 
   try {
