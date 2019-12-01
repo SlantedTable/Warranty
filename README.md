@@ -5,17 +5,17 @@
 # Warranty Countdown
 
 ## Installation Instructions
-Step 1. Download NodeJS
-    Install NodeJS for on your machine from the following link: https://nodejs.org/en/ 
-Step 2. Install the expo client tool for command line
-    Open your command line and type in the following command: npm install expo-cli --global
-Step 3. Clone the project
+1. Download NodeJS
+    1. Install NodeJS for on your machine from the following link: https://nodejs.org/en/ 
+2. Install the expo client tool for command line
+    1. Open your command line and type in the following command: npm install expo-cli --global
+3. Clone the project
     1. Open your command line
     2. type: cd Desktop
     3. type: git clone https://github.com/SlantedTable/Warranty/
-Step 5. Download expo for your mobile device
+4. Download expo for your mobile device
     1. On your phone's app store download the Expo App
-Step 5. Running the Application
+5. Running the Application
     1. Open your command line
     2. type: cd Desktop
     3. type: cd Warranty
