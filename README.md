@@ -59,23 +59,20 @@
 - Install NodeJS for on your machine from the following link: https://nodejs.org/en/
 - Install Git on your machine from the following link: https://git-scm.com/downloads
 - Install the expo client tool for command line
-    - Open your command line and type in the following command: npm install expo-cli --global
-    
+    - Open your command line and type in the following command: npm install expo-cli --global   
 2. Clone the project
 - Open your command line
 - type: `cd Desktop`
 - type: `git clone https://github.com/SlantedTable/Warranty/`
-
-3.Download expo for your mobile device
+3. Download expo for your mobile device
 - On your phone's app store download the Expo App
-
 4. Running the Application
 - Open your command line
-- type: `cd Desktop`
-- type: `cd Warranty`
-- type: `cd mobile`
-- type: `npm install` -> This will install the required dependencies needed in order to run the application.
-- type: `expo start`
+    - type: `cd Desktop`
+    - type: `cd Warranty`
+    - type: `cd mobile`
+    - type: `npm install` -> This will install the required dependencies needed in order to run the application.
+    - type: `expo start`
 - A new window will have opened. Open the Expo App on your phone and scan the QR code.
 
 ## Troubleshooting
