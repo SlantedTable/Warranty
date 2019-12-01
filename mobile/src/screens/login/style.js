@@ -19,6 +19,12 @@ export default StyleSheet.create({
     alignItems: 'center',
     textAlign: 'center',
   },
+  titleText: {
+    fontSize: 32,
+    textAlign: 'center',
+    color: '#2f4f4f',
+    marginBottom: 20,
+  },
   loginFormTextInput: {
     height: 43,
     fontSize: 14,
@@ -33,14 +39,14 @@ export default StyleSheet.create({
     marginBottom: 5,
     width: 320,
   },
-  loginButton: {
-    fontSize: 24,
-    color: '#007AFF',
-    borderRadius: 5,
-    marginTop: 10,
-  },
   registerButton: {
     fontSize: 12,
+    color: '#007AFF',
+    borderRadius: 5,
+    marginTop: 5,
+  },
+  loginButton: {
+    fontSize: 24,
     color: '#007AFF',
     borderRadius: 5,
     marginTop: 5,

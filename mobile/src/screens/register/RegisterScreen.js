@@ -90,7 +90,6 @@ export default class RegisterScreen extends Component {
                 }}
                 style={styles.logoImage}
               />
-              <Text style={styles.titleText}>Register</Text>
               <TextInput
                 placeholder="First name"
                 placeholderColor="#c4c3cb"
@@ -151,7 +150,7 @@ export default class RegisterScreen extends Component {
               <TouchableOpacity
                 onPress={this.handleSubmit}
               >
-                <Text style={styles.registerButton}>Login</Text>
+                <Text style={styles.registerButton}>Register</Text>
               </TouchableOpacity>
             </View>
           </View>

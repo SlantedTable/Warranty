@@ -15,8 +15,10 @@ export default StyleSheet.create({
     height: 146,
   },
   titleText: {
-    fontSize: 35,
+    fontSize: 32,
     textAlign: 'center',
+    color: '#2f4f4f',
+    marginBottom: 20,
   },
   registerFormView: {
     flex: 1,
