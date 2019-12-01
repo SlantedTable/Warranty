@@ -14,24 +14,20 @@ const timeConversion  = function(millisec) {
     return "Expired"
   }
 
-  var seconds = (millisec / 1000).toFixed(1);
-
-  var minutes = (millisec / (1000 * 60)).toFixed(1);
-
-  var hours = (millisec / (1000 * 60 * 60)).toFixed(1);
-
   var days = (millisec / (1000 * 60 * 60 * 24)).toFixed(1);
 
-  var years = (millisec / (1000 * 60 * 60 * 24 * 365)).toFixed(1);
+  var weeks = (millisec / (1000 * 60 * 60 * 24 * 7)).toFixed(1);
 
-  if (seconds < 60) {
-      return seconds + " seconds";
-  } else if (minutes < 60) {
-      return minutes + " minutes";
-  } else if (hours < 24) {
-      return hours + " hours";
-  } else if (days < 365) {
+  var months = (millisec / (1000 * 60 * 60 * 24 * 7 * 4.3)).toFixed(1);
+
+  var years = (millisec / (1000 * 60 * 60 * 24 * 7 * 4.3 * 12)).toFixed(1);
+
+  if (days < 7) {
     return days + " days"
+  } else if (weeks < 4.3) {
+    return weeks + " weeks"
+  } else if (months < 12) {
+    return months + " months"
   } else {
     return years + " years"
   }
@@ -44,11 +40,9 @@ export default class WarrantyItem extends React.Component {
 
   render() {
     const warranty = this.props.warranty
-    console.log(warranty)
     const expireDate = new Date(warranty.expires_at)
     const currDate = Date.now()
 
-    console.log({expireDate, currDate, diff: expireDate - currDate})
     return (
       <ListItem
         containerStyle={styles.warrantyItem}

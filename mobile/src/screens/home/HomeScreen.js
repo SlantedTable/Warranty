@@ -31,6 +31,8 @@ export default class HomeScreen extends Component {
       if (this.props.screenProps.isAuthenticated) {
         const warranties = await API.get('warranty', '/warranty')
 
+        console.log(warranties)
+
         this.setState({
           isLoading: false,
           warranties,

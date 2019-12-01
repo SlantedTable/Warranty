@@ -17,11 +17,16 @@ export async function main(event, context) {
   }
 
   try {
-    const result = await dynamoDbLib.call('query', params)
+    let warranties = await dynamoDbLib.call('query', params)
+
+    warranties.Items.sort((a, b) => {
+      return new Date(a.expires_at) - new Date(b.expires_at)
+    })
+
     // Return the matching list of items in response body
-    return success(result.Items)
+    return success(warranties.Items)
   } catch (e) {
+    console.log(e)
     return failure({ e })
-    return failure({ status: false })
   }
 }

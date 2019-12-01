@@ -85,15 +85,14 @@ export default class CreateWarrantyScreen extends Component {
     }
   }
 
-  s3Upload = async (event) => {
+  s3Upload = async (image) => {
     const filename = Date.now();
     this.setState({ upload_time: filename });
 
-    const stored = await Storage.put(filename + ".png", this.state.file);
+    const stored = await Storage.put(filename + ".png", image);
 
     return stored.key;
   }
-
   render() {
     return (
       <ScrollView>

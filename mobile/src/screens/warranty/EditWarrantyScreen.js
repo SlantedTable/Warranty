@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { API, Auth } from 'aws-amplify'
+import { API, Storage } from 'aws-amplify'
 import {
   Button,
   Image,
@@ -15,7 +15,7 @@ import { ScrollView } from 'react-native-gesture-handler'
 import styles from './style'
 import { componentOrSpinner } from '../../utils/componentOr'
 
-export default class EditWarrantyScreen extends React.Component {
+export default class EditWarrantyScreen extends Component {
   state = {
     isLoading: false,
     warranty: null,
@@ -57,6 +57,7 @@ export default class EditWarrantyScreen extends React.Component {
           purchase_date: warranty.purchase_date,
           expires_at: warranty.expires_at,
           product_number: warranty.product_number,
+          image: warranty.image,
         })
       } else {
         this.props.navigation.push('Login')
@@ -93,7 +94,6 @@ export default class EditWarrantyScreen extends React.Component {
 
       this.props.navigation.navigate('Home')
 
-      alert('Warranty updated')
     } catch (err) {
       alert(err.message)
     }
@@ -123,8 +123,20 @@ export default class EditWarrantyScreen extends React.Component {
     }
   }
 
+  s3Upload = async (image) => {
+    const filename = Date.now();
+    this.setState({ upload_time: filename });
+
+    const stored = await Storage.put(filename + ".png", image);
+
+    return stored.key;
+  }
+
+
   render() {
     let { image } = this.state
+
+    console.log(this.state.image)
 
     return componentOrSpinner(
       !this.state.isLoading,
