@@ -4,7 +4,9 @@
 
 # Warranty Countdown
 
-## Installation Instructions
+## Release Notes
+
+## Install Guide
 1. Download NodeJS and Git
     1. Install NodeJS for on your machine from the following link: https://nodejs.org/en/
     2. Install Git on your machine from the following link: https://git-scm.com/downloads
